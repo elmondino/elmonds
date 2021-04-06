@@ -15,10 +15,8 @@ export default function Weather(props) {
 			);
 			setHasError(false);
 			setWeatherData(response.data);
-			console.log(response);
 		} catch (err) {
 			setHasError(true);
-			console.log(err);
 		}
 	};
 
@@ -43,7 +41,6 @@ export default function Weather(props) {
 
 export async function getStaticProps(context) {
 	const returnProps = (weatherData = null, hasError = false) => {
-		console.log(weatherData, hasError);
 		return {
 			props: {
 				weatherData,
