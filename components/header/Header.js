@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignOut from "../sign-out/sign-out";
 
 function Header() {
   return (
@@ -10,6 +11,9 @@ function Header() {
           </li>
           <li>
             <Link href='/weather'>Weather Api</Link>
+          </li>
+          <li>
+            <SignOut></SignOut>
           </li>
         </ul>
       </nav>
