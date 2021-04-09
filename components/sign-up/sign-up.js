@@ -36,7 +36,7 @@ function SignUp() {
 		try {
 			const result = await createUser(enteredEmail, enteredPassword);
 			console.log(result);
-			router.replace('/profile');
+			router.replace('/login');
 		} catch (error) {
       console.log('here?')
 			console.log(error);

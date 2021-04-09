@@ -3,6 +3,7 @@ import {signIn, signOut, useSession} from 'next-auth/client';
 
 export default function LoginPage() {
   const [session, loading] = useSession();
+  console.log(useSession())
 	return (
 		<>
 			<Login></Login>
