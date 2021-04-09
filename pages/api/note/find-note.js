@@ -12,7 +12,7 @@ async function handler(req, res) {
 	const db = client.db();
 
 	const options = {
-		projection: {email: 1, _id: 1, note: 1},
+		projection: {_id: 1, note: 1},
 	};
 
 	const notes = await db.collection('notes').find({}, options).toArray();
