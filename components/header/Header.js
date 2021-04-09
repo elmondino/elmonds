@@ -20,6 +20,9 @@ function Header() {
 						<Link href='/login'>Log in</Link>
 					</li>
 					<li>
+						<Link href='/note'>Notes</Link>
+					</li>
+					<li>
 						<Link href='/protected'>Protected Route</Link>
 					</li>
 					<li>
