@@ -6,7 +6,7 @@ export default function DeleteUser({session}) {
 	const router = useRouter();
 	const oldPasswordRef = useRef();
 
-	async function changePasswordHandler(passwordData) {
+	async function handleDeleteUser(passwordData) {
 		const response = await fetch('/api/user/delete-user', {
 			method: 'DELETE',
 			body: JSON.stringify(passwordData),
@@ -32,7 +32,7 @@ export default function DeleteUser({session}) {
 		// optional: Add validation
 
 		try {
-			const result = await changePasswordHandler({
+			const result = await handleDeleteUser({
 				oldPassword: enteredOldPassword,
 			});
 

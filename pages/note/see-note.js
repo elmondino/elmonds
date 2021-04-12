@@ -1,17 +1,15 @@
 import {useState, useRef} from 'react';
 import {useRouter} from 'next/router';
-
-// import classes from './auth-form.module.css';
+import axios from 'axios';
 
 async function createNote(note) {
 	const response = await fetch('/api/note/find-note');
-	// const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
 
-    console.log(response)
+	console.log(response);
 
 	const data = await response.json();
 
-    console.log(data)
+	console.log(data);
 
 	if (!response.ok) {
 		throw new Error(data.message || 'Something went wrong!');
@@ -20,9 +18,9 @@ async function createNote(note) {
 	return data;
 }
 
-export default function NotePage() {
+export default function NotePage(props) {
 	const noteRef = useRef();
-    console.log('hi')
+	const [notes, setNotes] = useState(props.notes);
 
 	const router = useRouter();
 
@@ -31,8 +29,7 @@ export default function NotePage() {
 
 		try {
 			const result = await createNote();
-			console.log(result);
-			// router.replace('/login');
+			setNotes(result);
 		} catch (error) {
 			console.log(error);
 		}
@@ -41,7 +38,26 @@ export default function NotePage() {
 	return (
 		<section>
 			<h1>See notes</h1>
-			<button onClick={submitHandler}>hes</button>
+			{notes && notes.map(note => <p key={note._id}>note: {note.note}</p>)}
+			<button onClick={submitHandler}>get the latest notes</button>
 		</section>
 	);
+}
+
+export async function getStaticProps(context) {
+	const returnProps = (notes = null, hasError = false) => {
+		return {
+			props: {
+				notes,
+				hasError,
+			},
+		};
+	};
+
+	try {
+		const response = await axios.get(`'/api/note/find-note'`);
+		return returnProps(response.data, false);
+	} catch (err) {
+		return returnProps(null, true);
+	}
 }

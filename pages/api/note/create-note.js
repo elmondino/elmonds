@@ -8,6 +8,8 @@ async function handler(req, res) {
 
 	const session = await getSession({req: req});
 
+	console.log(session);
+
 	if (!session) {
 		res.status(401).json({message: 'Not authenticated!'});
 		return;
@@ -19,7 +21,7 @@ async function handler(req, res) {
 
 	if (!note || note.trim().length < 10) {
 		res.status(422).json({
-			message: note,
+			message: 'Notes must be at least 10 characters long.',
 		});
 		return;
 	}
@@ -28,20 +30,12 @@ async function handler(req, res) {
 
 	const db = client.db();
 
-	const existingUser = await db.collection('users').findOne({email: userEmail});
-
-	if (!existingUser) {
-	  res.status(422).json({ message: 'User not found!' });
-	  client.close();
-	  return;
-	}
-
 	const result = await db.collection('notes').insertOne({
-	  email: userEmail,
-	  note: note
+		email: userEmail,
+		note: note,
 	});
 
-	res.status(201).json({ message: 'Created note!' });
+	res.status(201).json({message: 'Created note!'});
 	client.close();
 }
 
