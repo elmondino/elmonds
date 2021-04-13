@@ -21,6 +21,7 @@ async function createNote(note) {
 export default function NotePage(props) {
 	const noteRef = useRef();
 	const [notes, setNotes] = useState(props.notes);
+	const [showNotes, setShowNotes] = useState(true);
 
 	const router = useRouter();
 
@@ -38,7 +39,10 @@ export default function NotePage(props) {
 	return (
 		<section>
 			<h1>See notes</h1>
-			{notes && notes.map(note => <p key={note._id}>note: {note.note}</p>)}
+			<button onClick={() => setShowNotes(!showNotes)}>
+				{showNotes ? 'hide notes' : 'show notes'}
+			</button>
+			{showNotes ? notes && notes.map(note => <p key={note._id}>note: {note.note}</p>) : <p>no notes to show</p>}
 			<button onClick={submitHandler}>get the latest notes</button>
 		</section>
 	);
