@@ -9,10 +9,10 @@ const fonts = {
 }
 
 const breakpoints = createBreakpoints({
-    sm: "40em",
-    md: "48em",
-    lg: "62em",
-    lg: "80em",
+    sm: "40em", // "640px"
+    md: "48em", // "768px"
+    lg: "64em", // "1024px"
+    xl: "80em", // "1240px"
 })
 
 const overrides = {
@@ -36,6 +36,11 @@ const overrides = {
         "5xl": "48px",
         "6xl": "64px",
     },
+    colors: {
+        elmonds: {
+            100: 'orange'
+        }
+    }
 }
 
 const customTheme = extendTheme(overrides)
