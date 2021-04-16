@@ -6,6 +6,7 @@ import {
 } from '@chakra-ui/react';
 import customTheme from '../styles/theme';
 import {Global, css} from '@emotion/react';
+import {Provider} from 'next-auth/client';
 
 import Container from '../components/Container';
 
@@ -42,19 +43,21 @@ const GlobalStyle = ({children}) => {
 
 function MyApp({Component, pageProps}) {
 	return (
-		<ChakraProvider resetCSS theme={customTheme}>
-			<ColorModeProvider
-				options={{
-					initialColorMode: 'light',
-					useSystemColorMode: true,
-				}}>
-				<GlobalStyle>
-					<Container>
-						<Component {...pageProps} />
-					</Container>
-				</GlobalStyle>
-			</ColorModeProvider>
-		</ChakraProvider>
+		<Provider session={pageProps.session}>
+			<ChakraProvider resetCSS theme={customTheme}>
+				<ColorModeProvider
+					options={{
+						initialColorMode: 'light',
+						useSystemColorMode: true,
+					}}>
+					<GlobalStyle>
+						<Container>
+							<Component {...pageProps} />
+						</Container>
+					</GlobalStyle>
+				</ColorModeProvider>
+			</ChakraProvider>
+		</Provider>
 	);
 }
 

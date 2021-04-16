@@ -37,8 +37,8 @@ const overrides = {
         "6xl": "64px",
     },
     colors: {
-        elmonds: {
-            100: 'orange'
+        grayCustom: {
+            900: '#171717'
         }
     }
 }

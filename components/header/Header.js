@@ -1,53 +1,37 @@
-import {useState, useEffect} from 'react';
-import {signIn, signOut, useSession} from 'next-auth/client';
-import {useColorMode, Button, Flex, Box} from '@chakra-ui/react';
-import NextLink from 'next/link';
-import styled from '@emotion/styled';
-
-import HeaderLinks from './headerLinks';
-
-import DarkModeSwitch from '../DarkModeSwitch';
+import {useState} from 'react';
+import {useColorMode, Box} from '@chakra-ui/react';
+import NavigationLinks from './navigationLinks';
+import HamburgerMenu from './hamburgerMenu';
 
 function Header() {
 	const {colorMode} = useColorMode();
-	const [session, loading] = useSession();
 	const [menu, setMenu] = useState(false);
 
 	const bgColor = {
 		light: 'white',
-		dark: '#171717',
-	};
-
-	const color = {
-		light: 'black',
-		dark: 'white',
-	};
-
-	const navHoverBg = {
-		light: 'gray.600',
-		dark: 'gray.300',
+		dark: 'grayCustom.900',
 	};
 
 	return (
 		<Box as='header'>
-			<Button
-				as='a'
-				variant='ghost'
-				p={[1, 2]}
-				_hover={{backgroundColor: navHoverBg[colorMode]}}
-				display={['block', 'block', 'block', 'none']}
-				onClick={() => setMenu(!menu)}>
-				Hamburger Button
-			</Button>
+			{/* MOBILE/TABLET */}
+			<HamburgerMenu menu={menu} setMenu={setMenu}></HamburgerMenu>
 			{menu ? (
-				<Box display={['block', 'block', 'block', 'none']}>
-					<HeaderLinks></HeaderLinks>
+				<Box
+					display={['block', 'block', 'block', 'none']}
+					position={'absolute'}
+					zIndex={10}
+					bg={bgColor[colorMode]}
+					minWidth={'100%'}>
+					<NavigationLinks />
 				</Box>
 			) : (
 				<Box display={['none', 'none', 'none', 'none']}>
-					<HeaderLinks></HeaderLinks>
+					<NavigationLinks />
 				</Box>
 			)}
+
+			{/* DESKTOP */}
 			<Box
 				display={['none', 'none', 'none', 'flex']}
 				flexDirection='row'
@@ -60,7 +44,7 @@ function Header() {
 				mt={[0, 0, 0, 8]}
 				mb={[0, 0, 0, 8]}
 				mx='auto'>
-				<HeaderLinks></HeaderLinks>
+				<NavigationLinks />
 			</Box>
 		</Box>
 	);
