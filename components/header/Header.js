@@ -30,6 +30,7 @@ function Header() {
           zIndex={10}
           bg={navBgColor[colorMode]}
           minWidth={"100%"}
+          as='nav'
         >
           <NavigationLinks />
         </Box>
