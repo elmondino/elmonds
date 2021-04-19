@@ -20,13 +20,14 @@ export default function NavigationLinks() {
     if (session) {
       return (
         <>
-          <Box>Welcome {session.user.email}</Box>
-          <Box>You can now access our super secret pages</Box>
-          <Button onClick={signOut}>sign out</Button>
+          <Button minWidth={["100%", "100%", "100%", "auto"]} onClick={signOut}>
+            sign out
+          </Button>
           <NextLink href='/change-password' passHref>
             <Button
               as='a'
               variant='ghost'
+              minWidth={["100%", "100%", "100%", "auto"]}
               p={[1, 2]}
               _hover={{ backgroundColor: navHoverBg[colorMode] }}
             >
@@ -37,6 +38,7 @@ export default function NavigationLinks() {
             <Button
               as='a'
               variant='ghost'
+              minWidth={["100%", "100%", "100%", "auto"]}
               p={[1, 2]}
               _hover={{ backgroundColor: navHoverBg[colorMode] }}
             >

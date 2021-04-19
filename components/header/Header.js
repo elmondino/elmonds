@@ -14,6 +14,11 @@ function Header() {
 
   return (
     <Box as='header'>
+      {session && (
+        <Box>
+          Welcome {session.user.email} you can now access our super secret pages
+        </Box>
+      )}
       {/* MOBILE/TABLET */}
       <HamburgerMenu menu={menu} setMenu={setMenu}></HamburgerMenu>
       {menu ? (
