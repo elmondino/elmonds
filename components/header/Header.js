@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
 import NavigationLinks from "./navigationLinks";
 import HamburgerMenu from "./hamburgerMenu";
+import {useSession} from 'next-auth/client';
 
 function Header() {
+  const [session, loading] = useSession();
   const { colorMode } = useColorMode();
   const [menu, setMenu] = useState(false);
 
@@ -12,21 +14,21 @@ function Header() {
     dark: "grayCustom.900",
   };
 
+  const navBgColor = {
+    light: "orange.100",
+    dark: "blue.900",
+  };
+
   return (
     <Box as='header'>
-      {session && (
-        <Box>
-          Welcome {session.user.email} you can now access our super secret pages
-        </Box>
-      )}
       {/* MOBILE/TABLET */}
-      <HamburgerMenu menu={menu} setMenu={setMenu}></HamburgerMenu>
+      <HamburgerMenu menu={menu} setMenu={setMenu} />
       {menu ? (
         <Box
           display={["block", "block", "block", "none"]}
           position={"absolute"}
           zIndex={10}
-          bg={bgColor[colorMode]}
+          bg={navBgColor[colorMode]}
           minWidth={"100%"}
         >
           <NavigationLinks />

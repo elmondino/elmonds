@@ -40,6 +40,16 @@ const overrides = {
     grayCustom: {
       900: "#171717",
     },
+    orangeCustom: {
+      700: "#ff880a",
+      900: '#eb7900'
+    },
+    violetCustom: {
+      900: "#aa00ff",
+    },
+    blueCustom: {
+      400: "#62bdff",
+    },
   },
 };
 
