@@ -10,6 +10,10 @@ function ProtectedServerSide() {
         never see the authentication updates as authentication is checked in the
         backend rather than the front end.
       </Text>
+      <Text my={4} fontWeight='bold'>
+        As this is a protected server side route you'll notice there is no
+        jitter when navigating from any route to this route.
+      </Text>
       <Text my={4}>
         The way this page has been setup: if you try to access this page without
         having logged in you'll be redirected to the homepage without seeing any

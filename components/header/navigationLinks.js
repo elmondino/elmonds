@@ -68,7 +68,8 @@ export default function NavigationLinks({ setIsMobile }) {
           </NextLink>
         </>
       );
-    } else {
+    }
+    if (!session) {
       return (
         <>
           <NextLink href='/login' passHref>
