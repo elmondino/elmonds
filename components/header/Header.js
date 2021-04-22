@@ -36,7 +36,7 @@ function Header() {
         </Box>
       ) : (
         <Box display={["none", "none", "none", "none"]}>
-          <NavigationLinks />
+          <NavigationLinks setIsMobile={setIsMobile} />
         </Box>
       )}
 
@@ -54,7 +54,7 @@ function Header() {
         mb={[0, 0, 8, 8]}
         mx='auto'
       >
-        <NavigationLinks />
+        <NavigationLinks setIsMobile={setIsMobile} />
       </Box>
     </Box>
   );

@@ -6,13 +6,9 @@ function ProtectedServerSide() {
     <Box>
       <Heading my={6}>This is a protected server side route</Heading>
       <Text my={4}>
-        Meaning behind protected server side route: The user of the SPA will
-        never see the authentication updates as authentication is checked in the
-        backend rather than the front end.
-      </Text>
-      <Text my={4} fontWeight='bold'>
-        As this is a protected server side route you'll notice there is no
-        jitter when navigating from any route to this route.
+        Meaning behind protected server side route: The user will never see the
+        authentication updates as authentication is checked in the backend
+        rather than the front end.
       </Text>
       <Text my={4}>
         The way this page has been setup: if you try to access this page without
