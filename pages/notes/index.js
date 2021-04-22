@@ -1,57 +1,30 @@
-import {useState, useRef} from 'react';
-import {useRouter} from 'next/router';
+import ViewNotes from "../../components/Notes/ViewNotes";
+import CreateNotes from "../../components/Notes/CreateNotes";
+import { useSession } from "next-auth/client";
+import NextLink from "next/link";
+import { Button, Text } from "@chakra-ui/react";
 
-// import classes from './auth-form.module.css';
+export default function NotesPage() {
+  const [session, loading] = useSession();
 
-async function createNote(note) {
-	const response = await fetch('/api/note/create-note', {
-		method: 'POST',
-		body: JSON.stringify({note}),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-
-	const data = await response.json();
-
-	if (!response.ok) {
-		throw new Error(data.message || 'Something went wrong!');
-	}
-
-	return data;
-}
-
-export default function NotePage() {
-	const noteRef = useRef();
-
-	const router = useRouter();
-
-	async function submitHandler(event) {
-		event.preventDefault();
-
-		const newNote = noteRef.current.value;
-
-		try {
-			const result = await createNote(newNote);
-			console.log(result);
-			// router.replace('/login');
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
-	return (
-		<section>
-			<h1>Create Note</h1>
-			<form onSubmit={submitHandler}>
-				<div>
-					<label htmlFor='note'>Your note</label>
-					<input type='input' id='note' required ref={noteRef} />
-				</div>
-				<div>
-					<button>Create Note</button>
-				</div>
-			</form>
-		</section>
-	);
+  return (
+    <>
+      <ViewNotes />
+      <CreateNotes />
+      {session && (
+        <NextLink href='/notes/my-notes' passHref>
+          <Text
+            as='a'
+            variant='ghost'
+            minWidth={["100%", "100%", "100%", "auto"]}
+            p={[1, 2]}
+            _hover={{ textDecoration: "none" }}
+            textDecoration={"underline"}
+          >
+            Click here to view and delete your notes
+          </Text>
+        </NextLink>
+      )}
+    </>
+  );
 }

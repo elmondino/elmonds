@@ -1,7 +1,22 @@
-import { getSession } from 'next-auth/client';
+import { Heading, Text, Box } from "@chakra-ui/layout";
+import { getSession } from "next-auth/client";
 
 function ProtectedServerSide() {
-  return <p>user has logged in</p>
+  return (
+    <Box>
+      <Heading my={6}>This is a protected server side route</Heading>
+      <Text my={4}>
+        Meaning behind protected server side route: The user of the SPA will
+        never see the authentication updates as authentication is checked in the
+        backend rather than the front end.
+      </Text>
+      <Text my={4}>
+        The way this page has been setup: if you try to access this page without
+        having logged in you'll be redirected to the homepage without seeing any
+        authentication in the front end.
+      </Text>
+    </Box>
+  );
 }
 
 export async function getServerSideProps(context) {
@@ -10,7 +25,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: '/',
+        destination: "/",
         permanent: false,
       },
     };

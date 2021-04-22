@@ -1,16 +1,35 @@
-import {useState, useEffect} from 'react';
-import {useSession} from 'next-auth/client';
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/client";
+import { Box, Heading, Text } from "@chakra-ui/layout";
 
 export default function ProtectedPage() {
   const [session, loading] = useSession();
-  console.log(session)
-  console.log(loading)
-  if(loading) {
-    return <p>Loading......</p>
+  console.log(session);
+  console.log(loading);
+  if (loading) {
+    return <Text>Loading session...</Text>;
   }
-  if(session) {
-    return <p> we have session?</p>
+  if (session) {
+    return (
+      <Box>
+        <Heading as='h1' my={6}>
+          Welcome to protected Next.js route
+        </Heading>
+        <Text my={4}>
+          You're logged in welcome to the protected route {session.user.email}
+        </Text>
+      </Box>
+    );
   }
-  return <p>hey no session yet</p>
+  return (
+    <Box>
+      <Heading as='h1' my={6}>
+        Welcome to protected Next.js route
+      </Heading>
+      <Text my={4}>
+        This a protected route, you can only view the content of this page if
+        you're logged in
+      </Text>
+    </Box>
+  );
 }
-

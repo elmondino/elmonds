@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
-import NavigationLinks from "./navigationLinks";
-import HamburgerMenu from "./hamburgerMenu";
-import {useSession} from 'next-auth/client';
+import NavigationLinks from "./NavigationLinks";
+import HamburgerMenu from "./HamburgerMenu";
+import { useSession } from "next-auth/client";
 
 function Header() {
   const [session, loading] = useSession();
@@ -20,7 +20,7 @@ function Header() {
   };
 
   return (
-    <Box as='header'>
+    <Box as='header' maxWidth={"1000px"} alignSelf={"center"} width={"100%"}>
       {/* MOBILE/TABLET */}
       <HamburgerMenu menu={menu} setMenu={setMenu} />
       {menu ? (

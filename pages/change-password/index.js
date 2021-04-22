@@ -1,9 +1,9 @@
-import { getSession } from 'next-auth/client';
+import { getSession } from "next-auth/client";
 
-import UserProfile from '../../components/update-password/user-profile';
+import ChangePassword from "../../components/ChangePassword/ChangePassword";
 
-function ProfilePage() {
-  return <UserProfile />;
+function ChangePasswordPage() {
+  return <ChangePassword />;
 }
 
 export async function getServerSideProps(context) {
@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: '/auth',
+        destination: "/",
         permanent: false,
       },
     };
@@ -23,4 +23,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default ProfilePage;
+export default ChangePasswordPage;

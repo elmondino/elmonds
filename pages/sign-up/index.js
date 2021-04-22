@@ -1,7 +1,7 @@
-import SignUp from '../../components/sign-up/sign-up';
+import SignUp from "../../components/SignUp/SignUp";
 
 function SignUpPage() {
-    return <SignUp></SignUp>
+  return <SignUp></SignUp>;
 }
 
 export default SignUpPage;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useColorMode, Button, Flex, Box } from "@chakra-ui/react";
+import { useColorMode, Box } from "@chakra-ui/react";
 import NextLink from "next/link";
 import styled from "@emotion/styled";
 
@@ -9,7 +9,7 @@ const Container = ({ children }) => {
   const { colorMode } = useColorMode();
 
   const bgColor = {
-    light: "gray.100",
+    light: "white",
     dark: "#171717",
   };
 
@@ -21,20 +21,18 @@ const Container = ({ children }) => {
   return (
     <>
       <Header></Header>
-      <Flex
+      <Box
         as='main'
-        justifyContent='center'
-        flexDirection='column'
         bg={bgColor[colorMode]}
         color={color[colorMode]}
-        px={[0, 4, 4]}
+        px={[4, 4, 4]}
         mt={[4, 8, 8]}
         mx={"auto"}
         maxWidth='800px'
         width='100%'
       >
         {children}
-      </Flex>
+      </Box>
     </>
   );
 };
