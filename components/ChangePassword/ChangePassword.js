@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/layout";
+import { Heading, Text } from "@chakra-ui/layout";
 import ChangePassword from "./ChangePasswordForm";
 
 function UserProfile() {
@@ -21,6 +21,10 @@ function UserProfile() {
       <Heading as='h1' size='lg' my={6}>
         Change your password
       </Heading>
+      <Text my={4}>
+        In order to update your password enter your old password and new
+        password.
+      </Text>
       <ChangePassword onChangePassword={changePasswordHandler} />
     </>
   );

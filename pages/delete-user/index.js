@@ -60,17 +60,23 @@ export default function DeleteUser({ session }) {
         Delete your account
       </Heading>
 
-      <Text fontSize='lg' my={4}>
+      <Text my={4}>
         In order to delete your account please insert your old password and
-        click 'Delete user' button
+        click 'Delete user'.
       </Text>
       <form onSubmit={submitHandler}>
         <FormControl id='old-password' my={4} isRequired>
-          <FormLabel>Old Password</FormLabel>
-          <Input type='password' ref={oldPasswordRef} />
+          <FormLabel>Password</FormLabel>
+          <Input
+            type='password'
+            placeholder='Insert password'
+            ref={oldPasswordRef}
+          />
         </FormControl>
 
-        <Button type='submit'>Delete user</Button>
+        <Button type='submit' colorScheme='blue'>
+          Delete user
+        </Button>
       </form>
     </>
   );

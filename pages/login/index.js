@@ -1,25 +1,37 @@
-// Route currently not used
 import Login from "../../components/login/login";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
+import { Heading, Link, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 export default function LoginPage() {
   const [session, loading] = useSession();
-  console.log(useSession());
+
   return (
     <>
-      <Login></Login>
       <main>
-        {!session && (
-          <>
-            Not signed in <br />
-            <button onClick={signIn}>Sign In</button>
-          </>
-        )}
         {session && (
           <>
-            Signed in as {session.user.email} <br />
-            <div>You can now access our super secret pages</div>
-            <button onClick={signOut}>sign out</button>
+            <Heading as='h1' my={6} size='lg'>
+              You have signed in {session.user.email}
+            </Heading>
+            <Text my={3}>You can now access our super secret pages.</Text>
+            <Text>
+              For example try accessing our server side protected route by{" "}
+              <NextLink href='/protected-server-side'>
+                <Link
+                  textDecoration={"underline"}
+                  _hover={{ textDecoration: "none" }}
+                >
+                  clicking here
+                </Link>
+              </NextLink>
+              .
+            </Text>
+          </>
+        )}
+        {!session && (
+          <>
+            <Login></Login>
           </>
         )}
       </main>

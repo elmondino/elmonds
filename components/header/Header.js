@@ -7,7 +7,7 @@ import { useSession } from "next-auth/client";
 function Header() {
   const [session, loading] = useSession();
   const { colorMode } = useColorMode();
-  const [menu, setMenu] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const bgColor = {
     light: "white",
@@ -22,17 +22,17 @@ function Header() {
   return (
     <Box as='header' maxWidth={"1000px"} alignSelf={"center"} width={"100%"}>
       {/* MOBILE/TABLET */}
-      <HamburgerMenu menu={menu} setMenu={setMenu} />
-      {menu ? (
+      <HamburgerMenu isMobile={isMobile} setIsMobile={setIsMobile} />
+      {isMobile ? (
         <Box
-          display={["block", "block", "block", "none"]}
+          display={["block", "block", "none", "none"]}
           position={"absolute"}
           zIndex={10}
           bg={navBgColor[colorMode]}
           minWidth={"100%"}
           as='nav'
         >
-          <NavigationLinks />
+          <NavigationLinks setIsMobile={setIsMobile} />
         </Box>
       ) : (
         <Box display={["none", "none", "none", "none"]}>
@@ -42,16 +42,16 @@ function Header() {
 
       {/* DESKTOP */}
       <Box
-        display={["none", "none", "none", "flex"]}
+        display={["none", "none", "flex", "flex"]}
         flexDirection='row'
         justifyContent='space-between'
         alignItems='top'
         bg={bgColor[colorMode]}
         as='nav'
-        px={[0, 0, 0, 6]}
-        py={[0, 0, 0, 2]}
-        mt={[0, 0, 0, 8]}
-        mb={[0, 0, 0, 8]}
+        px={[0, 0, 6, 6]}
+        py={[0, 0, 2, 2]}
+        mt={[0, 0, 8, 8]}
+        mb={[0, 0, 8, 8]}
         mx='auto'
       >
         <NavigationLinks />

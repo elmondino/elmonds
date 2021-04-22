@@ -1,7 +1,7 @@
 import { HamburgerIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import { color, useColorMode, Flex } from "@chakra-ui/react";
 
-export default function HamburgerMenu({ setMenu, menu }) {
+export default function HamburgerMenu({ setIsMobile, isMobile }) {
   const { colorMode } = useColorMode();
 
   const iconColor = {
@@ -19,21 +19,21 @@ export default function HamburgerMenu({ setMenu, menu }) {
       justifyContent={"flex-end"}
       p={2}
       bg={navBgColor[colorMode]}
-      display={["flex", "flex", "flex", "none"]}
+      display={["flex", "flex", "none", "none"]}
     >
-      {menu ? (
+      {isMobile ? (
         <SmallCloseIcon
           w={8}
           h={8}
           color={iconColor[colorMode]}
-          onClick={() => setMenu(!menu)}
+          onClick={() => setIsMobile(!isMobile)}
         />
       ) : (
         <HamburgerIcon
           w={8}
           h={8}
           color={iconColor[colorMode]}
-          onClick={() => setMenu(!menu)}
+          onClick={() => setIsMobile(!isMobile)}
         />
       )}
     </Flex>

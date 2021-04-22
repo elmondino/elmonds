@@ -2,7 +2,13 @@
 import { useRef } from "react";
 import { signIn } from "next-auth/client";
 import { useRouter } from "next/router";
-import { Input } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+} from "@chakra-ui/react";
 
 function Login() {
   const emailInputRef = useRef();
@@ -34,23 +40,32 @@ function Login() {
 
   return (
     <section>
-      <h1>Login</h1>
+      <Heading as='h1' my={6} size='lg'>
+        Sign in to access all features
+      </Heading>
       <form onSubmit={submitHandler}>
-        <div>
-          <label htmlFor='email'>Your Email</label>
-          <Input type='email' id='email' required ref={emailInputRef} />
-        </div>
-        <div>
-          <label htmlFor='password'>Your Password</label>
+        <FormControl id='email' isRequired my={3}>
+          <FormLabel>Email</FormLabel>
           <Input
+            type='email'
+            placeholder='Please enter your email'
+            ref={emailInputRef}
+          />
+        </FormControl>
+        <FormControl id='password' isRequired my={3}>
+          <FormLabel>Password</FormLabel>
+          <Input
+            placeholder='Please enter your password'
             type='password'
             id='password'
             required
             ref={passwordInputRef}
           />
-        </div>
+        </FormControl>
         <div>
-          <button>Login</button>
+          <Button colorScheme='blue' type='submit'>
+            Login
+          </Button>
         </div>
       </form>
     </section>

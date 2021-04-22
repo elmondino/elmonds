@@ -28,6 +28,13 @@ const GlobalStyle = ({ children }) => {
           a:focus {
             box-shadow: none !important;
           }
+          ,
+          a:active {
+            background: none !important;
+          }
+          * {
+            box-sizing: border-box !important;
+          }
         `}
       />
       {children}

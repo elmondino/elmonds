@@ -55,23 +55,44 @@ function SignUp() {
   return (
     <Box>
       <Heading as='h1' my={6} size='lg'>
-        Create yourself a dummy account
+        Create yourself a test account
       </Heading>
       <Text my={4}>
-        You'll need an account in order to access all features for this
-        Next.js/React.js App.
+        You'll need an account in order to access all features for this Next.js
+        / React.js App.
+      </Text>
+      <Text my={4}>
+        You can use a test email e.g. 'test@test.com' unless it has already been
+        taken.
+      </Text>
+      <Text my={4}>
+        These test email accounts are stored in mongoDB, you will be able to
+        delete these after if you wish to.
       </Text>
       <form onSubmit={submitHandler}>
         <FormControl my={4} isRequired>
-          <FormLabel id='email'>Your Email</FormLabel>
-          <Input type='email' required ref={emailInputRef} />
+          <FormLabel id='email'>Email</FormLabel>
+          <Input
+            type='email'
+            placeholder='Please insert your email'
+            required
+            ref={emailInputRef}
+          />
         </FormControl>
-        <FormControl my={4} isRequired>
+        <Text mt={4}>Password must contain at minimum 7 characters.</Text>
+        <FormControl mb={4} isRequired>
           <FormLabel id='password'>Your Password</FormLabel>
-          <Input type='password' required ref={passwordInputRef} />
+          <Input
+            type='password'
+            placeholder='Please insert your password'
+            required
+            ref={passwordInputRef}
+          />
         </FormControl>
         <FormControl>
-          <Button type='submit'>Create Account</Button>
+          <Button colorScheme={"blue"} type='submit'>
+            Create account
+          </Button>
         </FormControl>
       </form>
     </Box>

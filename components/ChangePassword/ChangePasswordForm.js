@@ -23,14 +23,24 @@ function ProfileForm(props) {
     <form onSubmit={submitHandler}>
       <FormControl id='new-password' isRequired my={4}>
         <FormLabel>New Password</FormLabel>
-        <Input type='password' id='new-password' ref={newPasswordRef} />
+        <Input
+          type='password'
+          placeholder='Insert new password'
+          ref={newPasswordRef}
+        />
       </FormControl>
       <FormControl id='new-password' isRequired my={4}>
         <FormLabel>Old Password</FormLabel>
-        <Input type='password' id='old-password' ref={oldPasswordRef} />
+        <Input
+          type='password'
+          placeholder='Insert old password'
+          ref={oldPasswordRef}
+        />
       </FormControl>
       <FormControl my={4}>
-        <Button type='submit'>Change Password</Button>
+        <Button type='submit' colorScheme='blue'>
+          Change Password
+        </Button>
       </FormControl>
     </form>
   );

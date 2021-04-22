@@ -16,7 +16,7 @@ export default function ProtectedPage() {
           Welcome to protected Next.js route
         </Heading>
         <Text my={4}>
-          You're logged in welcome to the protected route {session.user.email}
+          You're logged in welcome to the protected route {session.user.email}.
         </Text>
       </Box>
     );
@@ -28,7 +28,7 @@ export default function ProtectedPage() {
       </Heading>
       <Text my={4}>
         This a protected route, you can only view the content of this page if
-        you're logged in
+        you're logged in.
       </Text>
     </Box>
   );

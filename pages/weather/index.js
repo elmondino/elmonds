@@ -15,7 +15,8 @@ export default function Weather(props) {
   const [hasError, setHasError] = useState(props.hasError);
   const inputTemp = useRef();
 
-  const getTemperature = async () => {
+  const getTemperature = async (evt) => {
+    evt.preventDefault();
     const inputVal = inputTemp.current.value;
 
     try {
@@ -55,11 +56,13 @@ export default function Weather(props) {
           <Input
             type='text'
             ref={inputTemp}
-            placeholder='Please insert a name for a city...'
+            placeholder='Please insert a name for a city to find its temperature...'
           />
         </FormControl>
         <FormControl my={4}>
-          <Button type='submit'>Find weather for your city</Button>
+          <Button colorScheme={"blue"} type='submit'>
+            Find weather for your city
+          </Button>
         </FormControl>
       </form>
     </Box>
