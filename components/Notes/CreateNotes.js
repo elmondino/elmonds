@@ -58,7 +58,7 @@ export default function Note() {
           />
         </div>
         <div>
-          <Button>Create Note</Button>
+          <Button type='submit'>Create Note</Button>
         </div>
       </form>
     </section>
