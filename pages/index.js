@@ -13,7 +13,7 @@ export default function Index() {
         <title>Elmonds Kreslins Next.js App</title>
       </Head>
       <Box>
-        <Heading my={6}>Hi, I'm Elmonds Kreslins</Heading>
+        <Heading my={5}>Hi, I'm Elmonds Kreslins</Heading>
         <Text my={4}>
           I'm front end developer with for over 5 years of professional front
           end devlopment experience.

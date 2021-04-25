@@ -11,13 +11,15 @@ export default function LoginPage() {
       <main>
         {session && (
           <>
-            <Heading as='h1' my={6} size='lg'>
+            <Heading as='h1' my={5} size='lg'>
               You have signed in {session.user.email}
             </Heading>
-            <Text my={3}>You can now access our super secret pages.</Text>
+            <Text my={4}>
+              You can now access our super secret pages or create a note.
+            </Text>
             <Text>
-              For example try accessing our server side protected route by{" "}
-              <NextLink href='/protected-server-side'>
+              You can now create notes which everyone can see by{" "}
+              <NextLink href='/notes/my-notes'>
                 <Link
                   textDecoration={"underline"}
                   _hover={{ textDecoration: "none" }}

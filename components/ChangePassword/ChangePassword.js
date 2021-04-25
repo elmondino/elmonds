@@ -18,7 +18,7 @@ function UserProfile() {
 
   return (
     <>
-      <Heading as='h1' size='lg' my={6}>
+      <Heading as='h1' size='lg' my={5}>
         Change your password
       </Heading>
       <Text my={4}>

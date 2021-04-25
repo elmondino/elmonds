@@ -34,14 +34,14 @@ export default function Weather(props) {
     <Box>
       {hasError ? (
         <>
-          <Heading as='h1' my={6} size='lg'>
+          <Heading as='h1' my={5} size='lg'>
             City not found
           </Heading>
           <Text my={4}>Unable to find that city, please try another...</Text>
         </>
       ) : (
         <>
-          <Heading as='h1' my={6} size='lg'>
+          <Heading as='h1' my={5} size='lg'>
             Weather in {weatherData.name}
           </Heading>
           <Text my={4}>

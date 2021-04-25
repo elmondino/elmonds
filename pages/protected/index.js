@@ -6,13 +6,13 @@ export default function ProtectedPage() {
   const [session, loading] = useSession();
   console.log(session);
   console.log(loading);
-  if (loading) {
+  if (loading && !session) {
     return <Text>Loading session...</Text>;
   }
   if (session) {
     return (
       <Box>
-        <Heading as='h1' my={6}>
+        <Heading as='h1' my={5}>
           Welcome to protected Next.js route
         </Heading>
         <Text my={4}>
@@ -23,7 +23,7 @@ export default function ProtectedPage() {
   }
   return (
     <Box>
-      <Heading as='h1' my={6}>
+      <Heading as='h1' my={5}>
         Welcome to protected Next.js route
       </Heading>
       <Text my={4}>

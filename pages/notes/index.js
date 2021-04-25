@@ -2,29 +2,56 @@ import ViewNotes from "../../components/Notes/ViewNotes";
 import CreateNotes from "../../components/Notes/CreateNotes";
 import { useSession } from "next-auth/client";
 import NextLink from "next/link";
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Text, Heading, Box } from "@chakra-ui/react";
 
 export default function NotesPage() {
   const [session, loading] = useSession();
 
   return (
     <>
-      <ViewNotes />
-      <CreateNotes />
-      {session && (
-        <NextLink href='/notes/my-notes' passHref>
-          <Text
-            as='a'
-            variant='ghost'
-            minWidth={["100%", "100%", "100%", "auto"]}
-            p={[1, 2]}
-            _hover={{ textDecoration: "none" }}
-            textDecoration={"underline"}
-          >
-            Click here to view and delete your notes
+      <Box as='section' pb={3}>
+        <Heading as='h1' size='lg' my={5}>
+          Welcome to notes page
+        </Heading>
+        <Text my={4}>
+          you can view everyones notes below, and also create some of your own,
+          if you have logged in.
+        </Text>
+        {!session && (
+          <Text my={4}>
+            if you'd like to add a note{" "}
+            <NextLink href='/sign-up' passHref>
+              <Text
+                as='a'
+                _hover={{ textDecoration: "none", cursor: "pointer" }}
+                textDecoration={"underline"}
+              >
+                create an account
+              </Text>
+            </NextLink>
+            &nbsp;to get started.
           </Text>
-        </NextLink>
-      )}
+        )}
+        {session && (
+          <Text
+            my={4}
+            fontSize='lg'
+            minWidth={["100%", "100%", "100%", "auto"]}
+          >
+            To view create and delete your notes{" "}
+            <NextLink href='/notes/my-notes' passHref>
+              <Text
+                as='a'
+                _hover={{ textDecoration: "none", cursor: "pointer" }}
+                textDecoration={"underline"}
+              >
+                click here.
+              </Text>
+            </NextLink>
+          </Text>
+        )}
+      </Box>
+      <ViewNotes />
     </>
   );
 }

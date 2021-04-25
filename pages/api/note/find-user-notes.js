@@ -19,9 +19,9 @@ async function handler(req, res) {
   const user = await notesCollection.findOne({ email: userEmail });
 
   if (!user) {
-    res.status(404).json({
+    res.status(200).json({
       message: "User does not have any notes, need to create some first.",
-      status: "error",
+      status: "success",
     });
     client.close();
     return;

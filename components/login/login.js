@@ -40,11 +40,11 @@ function Login() {
 
   return (
     <section>
-      <Heading as='h1' my={6} size='lg'>
+      <Heading as='h1' my={5} size='lg'>
         Sign in to access all features
       </Heading>
       <form onSubmit={submitHandler}>
-        <FormControl id='email' isRequired my={3}>
+        <FormControl id='email' isRequired my={4}>
           <FormLabel>Email</FormLabel>
           <Input
             type='email'
@@ -52,7 +52,7 @@ function Login() {
             ref={emailInputRef}
           />
         </FormControl>
-        <FormControl id='password' isRequired my={3}>
+        <FormControl id='password' isRequired my={4}>
           <FormLabel>Password</FormLabel>
           <Input
             placeholder='Please enter your password'

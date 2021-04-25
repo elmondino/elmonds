@@ -56,7 +56,7 @@ export default function DeleteUser({ session }) {
 
   return (
     <>
-      <Heading as='h1' size='lg' my={6}>
+      <Heading as='h1' size='lg' my={5}>
         Delete your account
       </Heading>
 

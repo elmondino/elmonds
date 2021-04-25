@@ -1,6 +1,13 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
-import { Input, Heading, Button } from "@chakra-ui/react";
+import {
+  Input,
+  Heading,
+  Button,
+  Container,
+  FormLabel,
+  FormControl,
+} from "@chakra-ui/react";
 
 async function createNote(note) {
   const response = await fetch("/api/note/create-note", {
@@ -41,12 +48,12 @@ export default function Note() {
 
   return (
     <section>
-      <Heading as='h2' size='lg'>
-        Create Note
+      <Heading as='h2' size='md' my={5}>
+        Create Notes below
       </Heading>
       <form onSubmit={submitHandler}>
-        <div>
-          <label htmlFor='note'>Your note</label>
+        <FormControl id='notes'>
+          <FormLabel>Add a new note</FormLabel>
           <Input
             type='text'
             id='note'
@@ -56,10 +63,10 @@ export default function Note() {
               "insert a note that you can leave for everyone to view"
             }
           />
-        </div>
-        <div>
-          <Button type='submit'>Create Note</Button>
-        </div>
+        </FormControl>
+        <Button my={4} colorScheme='blue' type='submit'>
+          Create Note
+        </Button>
       </form>
     </section>
   );

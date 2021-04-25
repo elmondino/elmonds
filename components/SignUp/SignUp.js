@@ -54,7 +54,7 @@ function SignUp() {
 
   return (
     <Box>
-      <Heading as='h1' my={6} size='lg'>
+      <Heading as='h1' my={5} size='lg'>
         Create yourself a test account
       </Heading>
       <Text my={4}>
@@ -79,7 +79,6 @@ function SignUp() {
             ref={emailInputRef}
           />
         </FormControl>
-        <Text mt={4}>Password must contain at minimum 7 characters.</Text>
         <FormControl mb={4} isRequired>
           <FormLabel id='password'>Your Password</FormLabel>
           <Input
@@ -89,6 +88,7 @@ function SignUp() {
             ref={passwordInputRef}
           />
         </FormControl>
+        <Text my={4}>Password must contain a minimum of 7 characters.</Text>
         <FormControl>
           <Button colorScheme={"blue"} type='submit'>
             Create account
