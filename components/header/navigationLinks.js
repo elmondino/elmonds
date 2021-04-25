@@ -1,19 +1,11 @@
-import { signIn, signOut, useSession } from "next-auth/client";
-import { useColorMode, Button, Flex, Box } from "@chakra-ui/react";
+import { signOut, useSession } from "next-auth/client";
+import { Button, Flex, Box } from "@chakra-ui/react";
 import NextLink from "next/link";
 import DarkModeSwitch from "../DarkModeSwitch";
+import NavigationButton from "../Elements/NavigationButton";
 
 export default function NavigationLinks({ setIsMobile }) {
-  const { colorMode } = useColorMode();
   const [session, loading] = useSession();
-
-  const navHoverBg = {
-    light: "linear(to-t, orange.400 1%, white 8%)",
-    dark: "linear(to-t, blue.200 1%, gray.900 8%)",
-  };
-
-  console.log("session", session);
-  console.log("loading", loading);
 
   const hasLoggedIn = () => {
     if (session) {
@@ -24,47 +16,22 @@ export default function NavigationLinks({ setIsMobile }) {
             minWidth={["100%", "100%", "auto", "auto"]}
             p={[1, 2]}
             mb={[1, 1, 0, 0]}
+            mr={[0, 0, 1, 1]}
             onClick={signOut}
           >
             Sign out
           </Button>
           <NextLink href='/change-password' passHref>
-            <Button
+            <NavigationButton
+              name='Change password'
               onClick={() => setIsMobile(false)}
-              as='a'
-              variant='ghost'
-              minWidth={["100%", "100%", "auto", "auto"]}
-              p={[1, 2]}
-              mb={[1, 1, 0, 0]}
-              _hover={{ bgGradient: navHoverBg[colorMode] }}
-              border={[
-                "2px solid #0071c3",
-                "2px solid #0071c3",
-                "none",
-                "none",
-              ]}
-            >
-              Change password
-            </Button>
+            />
           </NextLink>
           <NextLink href='/delete-user' passHref>
-            <Button
+            <NavigationButton
+              name='Delete user'
               onClick={() => setIsMobile(false)}
-              as='a'
-              variant='ghost'
-              minWidth={["100%", "100%", "auto", "auto"]}
-              p={[1, 2]}
-              mb={[1, 1, 0, 0]}
-              _hover={{ bgGradient: navHoverBg[colorMode] }}
-              border={[
-                "2px solid #0071c3",
-                "2px solid #0071c3",
-                "none",
-                "none",
-              ]}
-            >
-              Delete user
-            </Button>
+            />
           </NextLink>
         </>
       );
@@ -73,42 +40,16 @@ export default function NavigationLinks({ setIsMobile }) {
       return (
         <>
           <NextLink href='/login' passHref>
-            <Button
+            <NavigationButton
+              name='Log in'
               onClick={() => setIsMobile(false)}
-              minWidth={["100%", "100%", "auto", "auto"]}
-              as='a'
-              variant='ghost'
-              p={[1, 2]}
-              mb={[1, 1, 0, 0]}
-              _hover={{ bgGradient: navHoverBg[colorMode] }}
-              border={[
-                "2px solid #0071c3",
-                "2px solid #0071c3",
-                "none",
-                "none",
-              ]}
-            >
-              Log in
-            </Button>
+            />
           </NextLink>
           <NextLink href='/sign-up' passHref>
-            <Button
+            <NavigationButton
+              name='Sign up'
               onClick={() => setIsMobile(false)}
-              minWidth={["100%", "100%", "auto", "auto"]}
-              as='a'
-              variant='ghost'
-              p={[1, 2]}
-              mb={[1, 1, 0, 0]}
-              _hover={{ bgGradient: navHoverBg[colorMode] }}
-              border={[
-                "2px solid #0071c3",
-                "2px solid #0071c3",
-                "none",
-                "none",
-              ]}
-            >
-              Sign up
-            </Button>
+            />
           </NextLink>
         </>
       );
@@ -119,74 +60,25 @@ export default function NavigationLinks({ setIsMobile }) {
     <>
       <Box>
         <NextLink href='/' passHref>
-          <Button
-            onClick={() => setIsMobile(false)}
-            minWidth={["100%", "100%", "auto", "auto"]}
-            as='a'
-            variant='ghost'
-            p={[1, 2]}
-            mb={[1, 1, 0, 0]}
-            _hover={{ bgGradient: navHoverBg[colorMode] }}
-            border={["2px solid #0071c3", "2px solid #0071c3", "none", "none"]}
-          >
-            Home
-          </Button>
+          <NavigationButton name='Home' onClick={() => setIsMobile(false)} />
         </NextLink>
         <NextLink href='/weather' passHref>
-          <Button
-            onClick={() => setIsMobile(false)}
-            minWidth={["100%", "100%", "auto", "auto"]}
-            as='a'
-            variant='ghost'
-            p={[1, 2]}
-            mb={[1, 1, 0, 0]}
-            _hover={{ bgGradient: navHoverBg[colorMode] }}
-            border={["2px solid #0071c3", "2px solid #0071c3", "none", "none"]}
-          >
-            Weather
-          </Button>
+          <NavigationButton name='Weather' onClick={() => setIsMobile(false)} />
         </NextLink>
         <NextLink href='/notes' passHref>
-          <Button
-            onClick={() => setIsMobile(false)}
-            minWidth={["100%", "100%", "auto", "auto"]}
-            as='a'
-            variant='ghost'
-            p={[1, 2]}
-            mb={[1, 1, 0, 0]}
-            _hover={{ bgGradient: navHoverBg[colorMode] }}
-            border={["2px solid #0071c3", "2px solid #0071c3", "none", "none"]}
-          >
-            Notes
-          </Button>
+          <NavigationButton name='Notes' onClick={() => setIsMobile(false)} />
         </NextLink>
         <NextLink href='/protected' passHref>
-          <Button
+          <NavigationButton
+            name='Protected'
             onClick={() => setIsMobile(false)}
-            minWidth={["100%", "100%", "auto", "auto"]}
-            as='a'
-            variant='ghost'
-            p={[1, 2]}
-            mb={[1, 1, 0, 0]}
-            _hover={{ bgGradient: navHoverBg[colorMode] }}
-            border={["2px solid #0071c3", "2px solid #0071c3", "none", "none"]}
-          >
-            Protected
-          </Button>
+          />
         </NextLink>
         <NextLink href='/protected-server-side' passHref>
-          <Button
+          <NavigationButton
+            name='Protected server side'
             onClick={() => setIsMobile(false)}
-            minWidth={["100%", "100%", "auto", "auto"]}
-            as='a'
-            variant='ghost'
-            p={[1, 2]}
-            mb={[1, 1, 0, 0]}
-            _hover={{ bgGradient: navHoverBg[colorMode] }}
-            border={["2px solid #0071c3", "2px solid #0071c3", "none", "none"]}
-          >
-            Protected server side
-          </Button>
+          />
         </NextLink>
       </Box>
 

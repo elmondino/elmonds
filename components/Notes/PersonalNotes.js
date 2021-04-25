@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
-import axios from "axios";
 import { useSession } from "next-auth/client";
 import { Button } from "@chakra-ui/button";
-import { Flex, Text, Box, Spacer, Heading } from "@chakra-ui/react";
-import CreateNotes from "../../components/Notes/CreateNotes";
+import { Flex, Text, Box, Heading } from "@chakra-ui/react";
+
+import NotesContext from "../../context/PersonalNotesContext";
+import { useContext } from "react";
 
 async function getNote(note) {
   const response = await fetch(`/api/note/find-user-notes`);
@@ -31,19 +30,14 @@ async function handleDeleteNote(noteId) {
 }
 
 export default function NotePage(props) {
+  const notesContext = useContext(NotesContext);
   const [session, loading] = useSession();
-  const [notes, setNotes] = useState(props.notes);
-  useEffect(async () => {
-    const response = await fetch(`/api/note/find-user-notes`);
-    const data = await response.json();
-    setNotes(data);
-  }, []);
 
   async function deleteNote(noteId) {
     try {
       const result = await handleDeleteNote(noteId);
       const data = await getNote();
-      setNotes(data);
+      notesContext.setNotes(data);
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +48,7 @@ export default function NotePage(props) {
 
     try {
       const data = await getNote();
-      setNotes(data);
+      notesContext.setNotes(data);
     } catch (error) {
       console.log(error);
     }
@@ -74,8 +68,11 @@ export default function NotePage(props) {
           You can delete all the notes you're not happy with by clicking the
           'delete note' button.
         </Text>
-        {notes && notes.status === "success" && notes.notes ? (
-          notes.notes.map((note) => (
+        {notesContext.notes &&
+        notesContext.notes.status === "success" &&
+        notesContext.notes.notes &&
+        notesContext.notes.notes.length ? (
+          notesContext.notes.notes.map((note) => (
             <Flex key={note._id}>
               <Flex
                 border={"2px solid black"}
@@ -101,7 +98,7 @@ export default function NotePage(props) {
             </Flex>
           ))
         ) : (
-          <Text my={4}>{notes && notes.message}</Text>
+          <Text my={4}>{notesContext.notes && notesContext.notes.message}</Text>
         )}
         <Button my={4} colorScheme='teal' onClick={submitHandler}>
           Find all your notes

@@ -9,6 +9,18 @@ import {
   FormControl,
 } from "@chakra-ui/react";
 
+import NotesContext from "../../context/PersonalNotesContext";
+import { useContext } from "react";
+
+async function getNote(note) {
+  const response = await fetch(`/api/note/find-user-notes`);
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message || "Something went wrong!");
+  }
+  return data;
+}
+
 async function createNote(note) {
   const response = await fetch("/api/note/create-note", {
     method: "POST",
@@ -28,6 +40,8 @@ async function createNote(note) {
 }
 
 export default function Note() {
+  const notesContext = useContext(NotesContext);
+
   const noteRef = useRef();
 
   const router = useRouter();
@@ -40,6 +54,8 @@ export default function Note() {
     try {
       const result = await createNote(newNote);
       console.log(result);
+      const data = await getNote();
+      notesContext.setNotes(data);
       // router.replace('/login');
     } catch (error) {
       console.log(error);
