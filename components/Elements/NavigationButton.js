@@ -11,7 +11,6 @@ export default function NavigationButton({ name }) {
 
   return (
     <Button
-      onClick={() => setIsMobile(false)}
       minWidth={["100%", "100%", "auto", "auto"]}
       as='a'
       variant='ghost'
