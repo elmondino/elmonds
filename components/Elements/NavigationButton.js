@@ -1,7 +1,8 @@
 import { Button } from "@chakra-ui/button";
 import { useColorMode } from "@chakra-ui/react";
+import React from "react";
 
-export default function NavigationButton({ name }) {
+const NavigationButton = React.forwardRef(({ onClick, href, name }, ref) => {
   const { colorMode } = useColorMode();
 
   const navHoverBg = {
@@ -11,6 +12,9 @@ export default function NavigationButton({ name }) {
 
   return (
     <Button
+      href={href}
+      onClick={onClick}
+      ref={ref}
       minWidth={["100%", "100%", "auto", "auto"]}
       as='a'
       variant='ghost'
@@ -22,4 +26,6 @@ export default function NavigationButton({ name }) {
       {name}
     </Button>
   );
-}
+});
+
+export default NavigationButton;
