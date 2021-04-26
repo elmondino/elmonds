@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/client";
 import { Button } from "@chakra-ui/button";
 import { Flex, Text, Box, Heading } from "@chakra-ui/react";
-
+import { useColorMode } from "@chakra-ui/react";
 import NotesContext from "../../context/PersonalNotesContext";
 import { useContext, useEffect } from "react";
 
@@ -30,8 +30,14 @@ async function handleDeleteNote(noteId) {
 }
 
 export default function NotePage(props) {
+  const { colorMode } = useColorMode();
   const notesContext = useContext(NotesContext);
   const [session, loading] = useSession();
+
+  const borderColour = {
+    light: "black",
+    dark: "white",
+  };
 
   useEffect(async () => {
     const response = await fetch(`/api/note/find-user-notes`);
@@ -48,17 +54,6 @@ export default function NotePage(props) {
       console.log(error);
     }
   }
-
-  // async function submitHandler(event) {
-  //   event.preventDefault();
-
-  //   try {
-  //     const data = await getNote();
-  //     notesContext.setNotes(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   if (loading && !session) {
     return <Text my={4}>Loading....</Text>;
@@ -79,11 +74,11 @@ export default function NotePage(props) {
         notesContext.notes.notes &&
         notesContext.notes.notes.length ? (
           notesContext.notes.notes.map((note) => {
-            console.log(note);
             return (
               <Flex key={note._id}>
                 <Flex
-                  border={"2px solid black"}
+                  border={("2px solid #0071c3", "2px solid #0071c3")}
+                  borderColor={borderColour[colorMode]}
                   flex={1}
                   p={3}
                   borderRadius={4}
@@ -109,9 +104,6 @@ export default function NotePage(props) {
         ) : (
           <Text my={4}>{notesContext.notes && notesContext.notes.message}</Text>
         )}
-        {/* <Button my={4} colorScheme='teal' onClick={submitHandler}>
-          Find all your notes
-        </Button> */}
       </Box>
     );
   }
