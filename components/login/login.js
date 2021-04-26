@@ -1,7 +1,6 @@
 //Component currently not used
 import { useRef } from "react";
 import { signIn } from "next-auth/client";
-import { useRouter } from "next/router";
 import {
   Button,
   FormControl,
@@ -9,12 +8,18 @@ import {
   Heading,
   Input,
 } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 function Login() {
+  const errorToast = useToast({
+    title: "Unable to log in",
+    description: "Please enter valid credentials or create an account.",
+    status: "error",
+    duration: 9000,
+    isClosable: true,
+  });
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
-  const router = useRouter();
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -30,12 +35,9 @@ function Login() {
       password: enteredPassword,
     });
 
-    console.log(result);
-
-    // if (!result.error) {
-    // 	// set some auth state
-    // 	router.replace('/profile');
-    // }
+    if (result.error) {
+      errorToast();
+    }
   }
 
   return (

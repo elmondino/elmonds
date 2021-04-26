@@ -10,7 +10,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-// import classes from './auth-form.module.css';
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from "@chakra-ui/react";
 
 async function createUser(email, password) {
   const response = await fetch("/api/auth/signup", {
@@ -33,8 +38,21 @@ async function createUser(email, password) {
 function SignUp() {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
   const router = useRouter();
+  const [error, setError] = useState(false);
+
+  function DisplayError() {
+    if (error) {
+      return (
+        <Alert status='error' my={4}>
+          <AlertTitle mr={2}>
+            Please enter valid email and password containing a minimum 7
+            characters.
+          </AlertTitle>
+        </Alert>
+      );
+    }
+  }
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -46,9 +64,9 @@ function SignUp() {
       const result = await createUser(enteredEmail, enteredPassword);
       console.log(result);
       router.replace("/login");
+      setError(false);
     } catch (error) {
-      console.log("here?");
-      console.log(error);
+      setError(true);
     }
   }
 
@@ -89,6 +107,7 @@ function SignUp() {
           />
         </FormControl>
         <Text my={4}>Password must contain a minimum of 7 characters.</Text>
+        {DisplayError()}
         <FormControl>
           <Button colorScheme={"blue"} type='submit'>
             Create account

@@ -3,7 +3,7 @@ import { Button } from "@chakra-ui/button";
 import { Flex, Text, Box, Heading } from "@chakra-ui/react";
 
 import NotesContext from "../../context/PersonalNotesContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 async function getNote(note) {
   const response = await fetch(`/api/note/find-user-notes`);
@@ -17,7 +17,7 @@ async function getNote(note) {
 async function handleDeleteNote(noteId) {
   const response = await fetch("/api/note/delete-note", {
     method: "DELETE",
-    body: JSON.stringify(noteId),
+    body: JSON.stringify({ noteId }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -33,6 +33,12 @@ export default function NotePage(props) {
   const notesContext = useContext(NotesContext);
   const [session, loading] = useSession();
 
+  useEffect(async () => {
+    const response = await fetch(`/api/note/find-user-notes`);
+    const data = await response.json();
+    notesContext.setNotes(data);
+  }, []);
+
   async function deleteNote(noteId) {
     try {
       const result = await handleDeleteNote(noteId);
@@ -43,16 +49,16 @@ export default function NotePage(props) {
     }
   }
 
-  async function submitHandler(event) {
-    event.preventDefault();
+  // async function submitHandler(event) {
+  //   event.preventDefault();
 
-    try {
-      const data = await getNote();
-      notesContext.setNotes(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //   try {
+  //     const data = await getNote();
+  //     notesContext.setNotes(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   if (loading && !session) {
     return <Text my={4}>Loading....</Text>;
@@ -72,37 +78,40 @@ export default function NotePage(props) {
         notesContext.notes.status === "success" &&
         notesContext.notes.notes &&
         notesContext.notes.notes.length ? (
-          notesContext.notes.notes.map((note) => (
-            <Flex key={note._id}>
-              <Flex
-                border={"2px solid black"}
-                flex={1}
-                p={3}
-                borderRadius={4}
-                mt={4}
-                justifyContent='space-between'
-                flexWrap={["wrap", "wrap", "nowrap"]}
-              >
-                <Text>{note.note}</Text>
-                <Button
-                  ml={[0, 0, 2]}
-                  mt={[2, 2, 0]}
-                  minW={["100%", "100%", "100px"]}
-                  alignSelf={"end"}
-                  colorScheme='red'
-                  onClick={() => deleteNote(note._id)}
+          notesContext.notes.notes.map((note) => {
+            console.log(note);
+            return (
+              <Flex key={note._id}>
+                <Flex
+                  border={"2px solid black"}
+                  flex={1}
+                  p={3}
+                  borderRadius={4}
+                  mt={4}
+                  justifyContent='space-between'
+                  flexWrap={["wrap", "wrap", "nowrap"]}
                 >
-                  delete note
-                </Button>
+                  <Text>{note.note}</Text>
+                  <Button
+                    ml={[0, 0, 2]}
+                    mt={[2, 2, 0]}
+                    minW={["100%", "100%", "100px"]}
+                    alignSelf={"end"}
+                    colorScheme='red'
+                    onClick={() => deleteNote(note._id)}
+                  >
+                    delete note
+                  </Button>
+                </Flex>
               </Flex>
-            </Flex>
-          ))
+            );
+          })
         ) : (
           <Text my={4}>{notesContext.notes && notesContext.notes.message}</Text>
         )}
-        <Button my={4} colorScheme='teal' onClick={submitHandler}>
+        {/* <Button my={4} colorScheme='teal' onClick={submitHandler}>
           Find all your notes
-        </Button>
+        </Button> */}
       </Box>
     );
   }

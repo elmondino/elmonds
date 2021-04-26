@@ -1,4 +1,4 @@
-import ViewNotes from "../../components/Notes/ViewNotes";
+import ViewNotes from "../../components/Notes/ViewAllNotes";
 import CreateNotes from "../../components/Notes/CreateNotes";
 import { useSession } from "next-auth/client";
 import NextLink from "next/link";

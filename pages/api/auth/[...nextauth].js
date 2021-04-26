@@ -39,8 +39,7 @@ export default NextAuth({
 
         if (!user) {
           client.close();
-          return null;
-          // throw new Error('No user found!');
+          throw new Error("User not found!");
         }
 
         const isValid = await verifyPassword(
@@ -50,8 +49,7 @@ export default NextAuth({
 
         if (!isValid) {
           client.close();
-          return null;
-          // throw new Error('Could not log you in!');
+          throw new Error("Incorrect password!");
         }
 
         if (user && isValid) {

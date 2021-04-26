@@ -7,6 +7,7 @@ import {
   Container,
   FormLabel,
   FormControl,
+  Box,
 } from "@chakra-ui/react";
 
 import NotesContext from "../../context/PersonalNotesContext";
@@ -63,13 +64,13 @@ export default function Note() {
   }
 
   return (
-    <section>
+    <Box as='section' py={4}>
       <Heading as='h2' size='md' my={5}>
-        Create Notes below
+        Add new notes below
       </Heading>
       <form onSubmit={submitHandler}>
         <FormControl id='notes'>
-          <FormLabel>Add a new note</FormLabel>
+          <FormLabel>Create a new note</FormLabel>
           <Input
             type='text'
             id='note'
@@ -84,6 +85,6 @@ export default function Note() {
           Create Note
         </Button>
       </form>
-    </section>
+    </Box>
   );
 }
