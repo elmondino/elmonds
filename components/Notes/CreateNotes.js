@@ -42,9 +42,7 @@ async function createNote(note) {
 
 export default function Note() {
   const notesContext = useContext(NotesContext);
-
   const noteRef = useRef();
-
   const router = useRouter();
 
   async function submitHandler(event) {
@@ -70,15 +68,15 @@ export default function Note() {
       </Heading>
       <form onSubmit={submitHandler}>
         <FormControl id='notes'>
-          <FormLabel>Create a new note</FormLabel>
+          <FormLabel>
+            Create a new note, be aware everyone will be able to see it!
+          </FormLabel>
           <Input
             type='text'
             id='note'
             required
             ref={noteRef}
-            placeholder={
-              "insert a note that you can leave for everyone to view"
-            }
+            placeholder={"insert text for your note"}
           />
         </FormControl>
         <Button my={4} colorScheme='blue' type='submit'>

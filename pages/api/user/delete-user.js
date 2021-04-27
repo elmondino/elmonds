@@ -36,7 +36,6 @@ async function handler(req, res) {
   }
 
   const result = await usersCollection.deleteOne({ email: userEmail });
-
   client.close();
   res.status(200).json({ message: "User deleted!" });
 }

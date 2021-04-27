@@ -9,7 +9,7 @@ export default NextAuth({
     jwt: true,
   },
   providers: [
-    // !------- Remove Google authentication for the moment. -------!
+    // !------- Google authentication for the moment. -------!
     // Providers.Google({
     //   clientId: process.env.GOOGLE_CLIENT_ID,
     //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -30,16 +30,14 @@ export default NextAuth({
       },
       async authorize(credentials) {
         const client = await connectToDatabase();
-
         const usersCollection = client.db().collection("users");
-
         const user = await usersCollection.findOne({
           email: credentials.email,
         });
 
         if (!user) {
           client.close();
-          throw new Error("User not found!");
+          throw new Error("User not found - make sure it exists.");
         }
 
         const isValid = await verifyPassword(
@@ -49,7 +47,9 @@ export default NextAuth({
 
         if (!isValid) {
           client.close();
-          throw new Error("Incorrect password!");
+          throw new Error(
+            "Incorrect password - please enter correct password."
+          );
         }
 
         if (user && isValid) {

@@ -9,13 +9,8 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from "@chakra-ui/react";
+import { Alert, AlertTitle } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 async function createUser(email, password) {
   const response = await fetch("/api/auth/signup", {
@@ -31,42 +26,33 @@ async function createUser(email, password) {
   if (!response.ok) {
     throw new Error(data.message || "Something went wrong!");
   }
-
   return data;
 }
 
 function SignUp() {
+  const successToast = useToast({
+    title: "Account created.",
+    description: "We've created your account for you, please log in.",
+    status: "success",
+    duration: 9000,
+    isClosable: true,
+  });
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const router = useRouter();
-  const [error, setError] = useState(false);
-
-  function DisplayError() {
-    if (error) {
-      return (
-        <Alert status='error' my={4}>
-          <AlertTitle mr={2}>
-            Please enter valid email and password containing a minimum 7
-            characters.
-          </AlertTitle>
-        </Alert>
-      );
-    }
-  }
+  const [errorMessage, setErrorMessage] = useState();
 
   async function submitHandler(event) {
     event.preventDefault();
-
-    const enteredEmail = emailInputRef.current.value;
+    const enteredEmail = emailInputRef.current.value.toLowerCase();
     const enteredPassword = passwordInputRef.current.value;
 
     try {
       const result = await createUser(enteredEmail, enteredPassword);
-      console.log(result);
       router.replace("/login");
-      setError(false);
+      successToast();
     } catch (error) {
-      setError(true);
+      setErrorMessage(error.message);
     }
   }
 
@@ -107,7 +93,11 @@ function SignUp() {
           />
         </FormControl>
         <Text my={4}>Password must contain a minimum of 7 characters.</Text>
-        {DisplayError()}
+        {errorMessage && (
+          <Alert status='error' my={4}>
+            <AlertTitle mr={2}>{errorMessage}</AlertTitle>
+          </Alert>
+        )}
         <FormControl>
           <Button colorScheme={"blue"} type='submit'>
             Create account

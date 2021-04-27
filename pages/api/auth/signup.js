@@ -5,6 +5,7 @@ async function handler(req, res) {
   if (req.method !== "POST") {
     return;
   }
+
   const data = req.body;
   const { email, password } = data;
 
@@ -26,7 +27,9 @@ async function handler(req, res) {
   const existingUser = await db.collection("users").findOne({ email: email });
 
   if (existingUser) {
-    res.status(422).json({ message: "User exists already!" });
+    res
+      .status(422)
+      .json({ message: "Unable to create account - email already in use." });
     client.close();
     return;
   }

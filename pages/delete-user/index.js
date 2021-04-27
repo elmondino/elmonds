@@ -1,5 +1,5 @@
 import { getSession, signOut } from "next-auth/client";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import {
   FormLabel,
@@ -10,8 +10,10 @@ import {
   Button,
   Box,
 } from "@chakra-ui/react";
+import { Alert, AlertTitle } from "@chakra-ui/react";
 
 export default function DeleteUser({ session }) {
+  const [errorMessage, setErrorMessage] = useState();
   const router = useRouter();
   const oldPasswordRef = useRef();
 
@@ -49,8 +51,8 @@ export default function DeleteUser({ session }) {
       router.replace("/login");
       signOut();
     } catch (error) {
-      console.log("here?");
-      console.log(error);
+      setErrorMessage(error.message || "Something went wrong!");
+      return;
     }
   }
 
@@ -73,7 +75,11 @@ export default function DeleteUser({ session }) {
             ref={oldPasswordRef}
           />
         </FormControl>
-
+        {errorMessage && (
+          <Alert status='error' my={4}>
+            <AlertTitle mr={2}>{errorMessage}</AlertTitle>
+          </Alert>
+        )}
         <Button type='submit' colorScheme='blue'>
           Delete user
         </Button>

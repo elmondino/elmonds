@@ -13,9 +13,11 @@ function UserProfile() {
 
     const data = await response.json();
 
-    console.log(data);
+    if (!response.ok) {
+      throw new Error(data.message || "Something went wrong!");
+    }
+    return data;
   }
-
   return (
     <>
       <Heading as='h1' size='lg' my={5}>
@@ -25,7 +27,7 @@ function UserProfile() {
         In order to update your password enter your old password and new
         password.
       </Text>
-      <ChangePassword onChangePassword={changePasswordHandler} />
+      <ChangePassword changePasswordHandler={changePasswordHandler} />
     </>
   );
 }

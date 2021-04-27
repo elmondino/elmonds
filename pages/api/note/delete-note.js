@@ -14,7 +14,7 @@ async function handler(req, res) {
   const noteId = new ObjectId(req.body.noteId);
 
   if (!session.user.email) {
-    res.status(401).json({ message: "Not authenticated!", status: "error" });
+    res.status(401).json({ message: "Not authenticated!" });
     return;
   }
 
@@ -26,7 +26,6 @@ async function handler(req, res) {
   if (!notes) {
     res.status(404).json({
       message: "You have no notes, try to create some first.",
-      status: "error",
     });
     client.close();
     return;
@@ -35,7 +34,7 @@ async function handler(req, res) {
   const result = await notesCollection.deleteOne({ _id: noteId });
 
   client.close();
-  res.status(200).json({ message: "Note deleted!", status: "success" });
+  res.status(200).json({ message: "Note deleted!" });
   return;
 }
 

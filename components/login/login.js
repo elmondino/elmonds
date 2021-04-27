@@ -1,5 +1,4 @@
-//Component currently not used
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { signIn } from "next-auth/client";
 import {
   Button,
@@ -9,12 +8,14 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
+import { Alert, AlertTitle } from "@chakra-ui/react";
 
 function Login() {
-  const errorToast = useToast({
-    title: "Unable to log in",
-    description: "Please enter valid credentials or create an account.",
-    status: "error",
+  const [errorMessage, setErrorMessage] = useState();
+  const successToast = useToast({
+    title: "Success!",
+    description: "You have successfully logged in.",
+    status: "success",
     duration: 9000,
     isClosable: true,
   });
@@ -24,7 +25,7 @@ function Login() {
   async function submitHandler(event) {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
+    const enteredEmail = emailInputRef.current.value.toLowerCase();
     const enteredPassword = passwordInputRef.current.value;
 
     // optional: Add validation
@@ -35,8 +36,14 @@ function Login() {
       password: enteredPassword,
     });
 
+    if (!result.error) {
+      successToast();
+      return;
+    }
+
     if (result.error) {
-      errorToast();
+      setErrorMessage(result.error || "Something went wrong!");
+      return;
     }
   }
 
@@ -64,11 +71,14 @@ function Login() {
             ref={passwordInputRef}
           />
         </FormControl>
-        <div>
-          <Button colorScheme='blue' type='submit'>
-            Login
-          </Button>
-        </div>
+        {errorMessage && (
+          <Alert status='error' my={4}>
+            <AlertTitle mr={2}>{errorMessage}</AlertTitle>
+          </Alert>
+        )}
+        <Button colorScheme='blue' type='submit'>
+          Login
+        </Button>
       </form>
     </section>
   );

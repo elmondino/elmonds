@@ -65,12 +65,7 @@ export default function NotePage(props) {
         <Heading as='h1' size='lg' my={5}>
           View all your personal notes
         </Heading>
-        <Text my={4}>
-          You can delete all the notes you're not happy with by clicking the
-          'delete note' button.
-        </Text>
         {notesContext.notes &&
-        notesContext.notes.status === "success" &&
         notesContext.notes.notes &&
         notesContext.notes.notes.length ? (
           notesContext.notes.notes.map((note) => {

@@ -1,4 +1,4 @@
-import ViewNotes from "../../components/Notes/ViewAllNotes";
+import ViewAllNotes from "../../components/Notes/ViewAllNotes";
 import CreateNotes from "../../components/Notes/CreateNotes";
 import { useSession } from "next-auth/client";
 import NextLink from "next/link";
@@ -11,7 +11,7 @@ export default function NotesPage() {
     <>
       <Box as='section' pb={3}>
         <Heading as='h1' size='lg' my={5}>
-          Welcome to notes page
+          Notes created by all accounts
         </Heading>
         <Text my={4}>
           you can view everyones notes below, and also create some of your own,
@@ -51,7 +51,7 @@ export default function NotesPage() {
           </Text>
         )}
       </Box>
-      <ViewNotes />
+      <ViewAllNotes />
     </>
   );
 }
