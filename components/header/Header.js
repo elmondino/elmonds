@@ -2,18 +2,14 @@ import { useState } from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
 import NavigationLinks from "./NavigationLinks";
 import HamburgerMenu from "./HamburgerMenu";
-import { useSession } from "next-auth/client";
 
 function Header() {
-  const [session, loading] = useSession();
   const { colorMode } = useColorMode();
   const [isMobile, setIsMobile] = useState(false);
-
   const bgColor = {
     light: "white",
     dark: "grayCustom.900",
   };
-
   const navBgColor = {
     light: "orange.100",
     dark: "blue.900",
@@ -39,7 +35,6 @@ function Header() {
           <NavigationLinks setIsMobile={setIsMobile} />
         </Box>
       )}
-
       {/* DESKTOP */}
       <Box
         display={["none", "none", "flex", "flex"]}

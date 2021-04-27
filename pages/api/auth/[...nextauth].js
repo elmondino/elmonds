@@ -9,11 +9,6 @@ export default NextAuth({
     jwt: true,
   },
   providers: [
-    // !------- Google authentication for the moment. -------!
-    // Providers.Google({
-    //   clientId: process.env.GOOGLE_CLIENT_ID,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    // }),
     Providers.Credentials({
       name: "Email and Password",
       credentials: {

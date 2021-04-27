@@ -11,6 +11,7 @@ const DarkModeSwitch = () => {
     light: "orange.100",
     dark: "blue.900",
   };
+
   return (
     <Box
       minWidth={["100%", "100%", "auto", "auto"]}

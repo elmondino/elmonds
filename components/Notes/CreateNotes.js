@@ -1,17 +1,16 @@
 import { useState, useRef } from "react";
-import { useRouter } from "next/router";
 import {
   Input,
   Heading,
   Button,
-  Container,
   FormLabel,
   FormControl,
   Box,
 } from "@chakra-ui/react";
-
 import NotesContext from "../../context/PersonalNotesContext";
 import { useContext } from "react";
+import { Alert, AlertTitle } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 async function getNote(note) {
   const response = await fetch(`/api/note/find-user-notes`);
@@ -36,28 +35,33 @@ async function createNote(note) {
   if (!response.ok) {
     throw new Error(data.message || "Something went wrong!");
   }
-
   return data;
 }
 
 export default function Note() {
+  const [errorMessage, setErrorMessage] = useState();
   const notesContext = useContext(NotesContext);
   const noteRef = useRef();
-  const router = useRouter();
+  const successToast = useToast({
+    title: "Note created.",
+    description: "Note has been created.",
+    status: "success",
+    duration: 3000,
+    isClosable: true,
+  });
 
   async function submitHandler(event) {
     event.preventDefault();
-
     const newNote = noteRef.current.value;
 
     try {
       const result = await createNote(newNote);
-      console.log(result);
+      successToast();
       const data = await getNote();
       notesContext.setNotes(data);
-      // router.replace('/login');
+      setErrorMessage(false);
     } catch (error) {
-      console.log(error);
+      setErrorMessage(error.message);
     }
   }
 
@@ -79,6 +83,11 @@ export default function Note() {
             placeholder={"insert text for your note"}
           />
         </FormControl>
+        {errorMessage && (
+          <Alert status='error' my={4}>
+            <AlertTitle mr={2}>{errorMessage}</AlertTitle>
+          </Alert>
+        )}
         <Button my={4} colorScheme='blue' type='submit'>
           Create Note
         </Button>

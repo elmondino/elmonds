@@ -12,6 +12,8 @@ import { Alert, AlertTitle } from "@chakra-ui/react";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState();
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
   const successToast = useToast({
     title: "Success!",
     description: "You have successfully logged in.",
@@ -19,17 +21,11 @@ function Login() {
     duration: 9000,
     isClosable: true,
   });
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
 
   async function submitHandler(event) {
     event.preventDefault();
-
     const enteredEmail = emailInputRef.current.value.toLowerCase();
     const enteredPassword = passwordInputRef.current.value;
-
-    // optional: Add validation
-
     const result = await signIn("credentials", {
       redirect: false,
       email: enteredEmail,

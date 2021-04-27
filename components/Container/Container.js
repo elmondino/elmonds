@@ -1,18 +1,13 @@
 import React from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
-import NextLink from "next/link";
-import styled from "@emotion/styled";
-
-import Header from "../components/header/header";
+import Header from "../header/header";
 
 const Container = ({ children }) => {
   const { colorMode } = useColorMode();
-
   const bgColor = {
     light: "white",
     dark: "#171717",
   };
-
   const color = {
     light: "black",
     dark: "white",

@@ -30,6 +30,10 @@ async function createUser(email, password) {
 }
 
 function SignUp() {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState();
   const successToast = useToast({
     title: "Account created.",
     description: "We've created your account for you, please log in.",
@@ -37,10 +41,6 @@ function SignUp() {
     duration: 9000,
     isClosable: true,
   });
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
-  const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState();
 
   async function submitHandler(event) {
     event.preventDefault();

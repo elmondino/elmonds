@@ -42,7 +42,7 @@ const overrides = {
     },
     orangeCustom: {
       700: "#ff880a",
-      900: '#eb7900'
+      900: "#eb7900",
     },
     violetCustom: {
       900: "#aa00ff",

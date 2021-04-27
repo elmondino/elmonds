@@ -1,14 +1,12 @@
 import { HamburgerIcon, SmallCloseIcon } from "@chakra-ui/icons";
-import { color, useColorMode, Flex } from "@chakra-ui/react";
+import { useColorMode, Flex } from "@chakra-ui/react";
 
 export default function HamburgerMenu({ setIsMobile, isMobile }) {
   const { colorMode } = useColorMode();
-
   const iconColor = {
     light: "orangeCustom.900",
     dark: "blueCustom.400",
   };
-
   const navBgColor = {
     light: "orange.100",
     dark: "blue.900",

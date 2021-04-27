@@ -1,12 +1,7 @@
 import Head from "next/head";
-import { useColorMode, Heading, Text, Box } from "@chakra-ui/react";
+import { Heading, Text, Box } from "@chakra-ui/react";
 
 export default function Index() {
-  const { colorMode } = useColorMode();
-  const colorSecondary = {
-    light: "gray.700",
-    dark: "gray.400",
-  };
   return (
     <>
       <Head>

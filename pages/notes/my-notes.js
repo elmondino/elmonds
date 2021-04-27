@@ -8,7 +8,7 @@ export default function MyNotesPage() {
 
   if (!session) {
     return (
-      <Heading my={6} as='h1' fontSize='lg'>
+      <Heading my={5} as='h1' fontSize='lg'>
         Please login to view this page
       </Heading>
     );

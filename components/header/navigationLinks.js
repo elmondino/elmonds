@@ -1,7 +1,7 @@
 import { signOut, useSession } from "next-auth/client";
 import { Button, Flex, Box } from "@chakra-ui/react";
 import NextLink from "next/link";
-import DarkModeSwitch from "../DarkModeSwitch";
+import DarkModeSwitch from "../Elements/DarkModeSwitch";
 import NavigationButton from "../Elements/NavigationButton";
 
 export default function NavigationLinks({ setIsMobile }) {
@@ -81,7 +81,6 @@ export default function NavigationLinks({ setIsMobile }) {
           />
         </NextLink>
       </Box>
-
       <Flex
         flexWrap={"wrap"}
         justifyContent={"flex-end"}

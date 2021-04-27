@@ -4,6 +4,7 @@ import { Flex, Text, Box, Heading } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 import NotesContext from "../../context/PersonalNotesContext";
 import { useContext, useEffect } from "react";
+import { useToast } from "@chakra-ui/react";
 
 async function getNote(note) {
   const response = await fetch(`/api/note/find-user-notes`);
@@ -29,7 +30,14 @@ async function handleDeleteNote(noteId) {
   return data;
 }
 
-export default function NotePage(props) {
+export default function PersonalNotes(props) {
+  const successToast = useToast({
+    title: "Deleted note.",
+    description: "Note has been deleted!",
+    status: "info",
+    duration: 3000,
+    isClosable: true,
+  });
   const { colorMode } = useColorMode();
   const notesContext = useContext(NotesContext);
   const [session, loading] = useSession();
@@ -48,6 +56,7 @@ export default function NotePage(props) {
   async function deleteNote(noteId) {
     try {
       const result = await handleDeleteNote(noteId);
+      successToast();
       const data = await getNote();
       notesContext.setNotes(data);
     } catch (error) {

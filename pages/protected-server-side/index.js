@@ -1,7 +1,7 @@
 import { Heading, Text, Box } from "@chakra-ui/layout";
 import { getSession } from "next-auth/client";
 
-function ProtectedServerSide() {
+function ProtectedServerSidePage() {
   return (
     <Box>
       <Heading my={5}>This is a protected server side route</Heading>
@@ -36,4 +36,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default ProtectedServerSide;
+export default ProtectedServerSidePage;

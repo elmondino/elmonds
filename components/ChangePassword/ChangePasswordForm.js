@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
 
@@ -9,7 +9,6 @@ function ProfileForm({ changePasswordHandler }) {
 
   async function submitHandler(event) {
     event.preventDefault();
-
     const enteredOldPassword = oldPasswordRef.current.value;
     const enteredNewPassword = newPasswordRef.current.value;
 
@@ -19,7 +18,6 @@ function ProfileForm({ changePasswordHandler }) {
         newPassword: enteredNewPassword,
       });
     } catch (error) {
-      console.log(error);
       setErrorMessage(error.message);
     }
   }

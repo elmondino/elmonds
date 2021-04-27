@@ -4,7 +4,6 @@ import React from "react";
 
 const NavigationButton = React.forwardRef(({ onClick, href, name }, ref) => {
   const { colorMode } = useColorMode();
-
   const navHoverBg = {
     light: "linear(to-t, orange.400 1%, white 8%)",
     dark: "linear(to-t, blue.200 1%, gray.900 8%)",

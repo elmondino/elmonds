@@ -8,15 +8,12 @@ async function handler(req, res) {
 
   const session = await getSession({ req: req });
 
-  console.log(session);
-
   if (!session) {
     res.status(401).json({ message: "Not authenticated!" });
     return;
   }
 
   const userEmail = session.user.email;
-
   const note = req.body.note;
 
   if (!note || note.trim().length < 10) {
@@ -27,9 +24,7 @@ async function handler(req, res) {
   }
 
   const client = await connectToDatabase();
-
   const db = client.db();
-
   const result = await db.collection("notes").insertOne({
     email: userEmail,
     note: note,

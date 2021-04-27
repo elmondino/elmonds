@@ -1,9 +1,9 @@
-import { signOut } from 'next-auth/client'
+import { signOut } from "next-auth/client";
 
 export default function SignOut() {
-    function logOutHandler() {
-        signOut();
-    }
+  function logOutHandler() {
+    signOut();
+  }
 
-    return ( <button onClick={logOutHandler}>log out</button> )
+  return <button onClick={logOutHandler}>log out</button>;
 }

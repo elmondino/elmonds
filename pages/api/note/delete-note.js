@@ -8,9 +8,6 @@ async function handler(req, res) {
   }
 
   const session = await getSession({ req: req });
-
-  console.log("can i see this?");
-  console.log(session);
   const noteId = new ObjectId(req.body.noteId);
 
   if (!session.user.email) {

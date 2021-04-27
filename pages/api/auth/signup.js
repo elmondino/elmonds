@@ -40,7 +40,7 @@ async function handler(req, res) {
     password: hashedPassword,
   });
 
-  res.status(201).json({ message: "Created user!" });
+  res.status(201).json({ message: "Account has been created!" });
   client.close();
 }
 

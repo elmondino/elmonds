@@ -9,6 +9,8 @@ import {
   FormControl,
   FormLabel,
 } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
+import { Alert, AlertTitle } from "@chakra-ui/react";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState(props.weatherData);
@@ -25,10 +27,18 @@ export default function Weather(props) {
       );
       setHasError(false);
       setWeatherData(response.data);
-    } catch (err) {
+      successToast();
+    } catch (error) {
       setHasError(true);
     }
   };
+
+  const successToast = useToast({
+    title: "Weather has been found for your desired location!",
+    status: "info",
+    duration: 5000,
+    isClosable: true,
+  });
 
   return (
     <Box>
@@ -59,6 +69,13 @@ export default function Weather(props) {
             placeholder='Please insert a name for a city to find its temperature...'
           />
         </FormControl>
+        {hasError && (
+          <Alert status='error' my={4}>
+            <AlertTitle mr={2}>
+              Sorry, we are unnable to find that city. Try another!
+            </AlertTitle>
+          </Alert>
+        )}
         <FormControl my={4}>
           <Button colorScheme={"blue"} type='submit'>
             Find weather for your city

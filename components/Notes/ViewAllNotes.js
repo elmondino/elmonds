@@ -1,21 +1,11 @@
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
-import axios from "axios";
-import { Button, Heading, Text, Flex } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { Button, Text, Flex } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
-
-async function findNotes(note) {
-  const response = await fetch("/api/note/find-note");
-  const data = await response.json();
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
-  }
-  return data;
-}
 
 export default function ViewNotes(props) {
   const { colorMode } = useColorMode();
-
+  const [notes, setNotes] = useState(props.notes);
+  const [showNotes, setShowNotes] = useState(true);
   const borderColour = {
     light: "black",
     dark: "white",
@@ -26,11 +16,6 @@ export default function ViewNotes(props) {
     const data = await response.json();
     setNotes(data);
   }, []);
-
-  const noteRef = useRef();
-  const [notes, setNotes] = useState(props.notes);
-  const [showNotes, setShowNotes] = useState(true);
-  const router = useRouter();
 
   return (
     <section>

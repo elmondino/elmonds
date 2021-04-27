@@ -1,8 +1,7 @@
 import ViewAllNotes from "../../components/Notes/ViewAllNotes";
-import CreateNotes from "../../components/Notes/CreateNotes";
 import { useSession } from "next-auth/client";
 import NextLink from "next/link";
-import { Button, Text, Heading, Box } from "@chakra-ui/react";
+import { Text, Heading, Box } from "@chakra-ui/react";
 
 export default function NotesPage() {
   const [session, loading] = useSession();

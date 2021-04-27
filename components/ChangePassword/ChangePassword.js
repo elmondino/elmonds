@@ -1,7 +1,7 @@
 import { Heading, Text } from "@chakra-ui/layout";
-import ChangePassword from "./ChangePasswordForm";
+import ChangePasswordForm from "./ChangePasswordForm";
 
-function UserProfile() {
+function ChangePassword() {
   async function changePasswordHandler(passwordData) {
     const response = await fetch("/api/user/change-password", {
       method: "PATCH",
@@ -27,9 +27,9 @@ function UserProfile() {
         In order to update your password enter your old password and new
         password.
       </Text>
-      <ChangePassword changePasswordHandler={changePasswordHandler} />
+      <ChangePasswordForm changePasswordHandler={changePasswordHandler} />
     </>
   );
 }
 
-export default UserProfile;
+export default ChangePassword;

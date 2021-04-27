@@ -8,11 +8,10 @@ import {
   Text,
   FormControl,
   Button,
-  Box,
 } from "@chakra-ui/react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
 
-export default function DeleteUser({ session }) {
+export default function DeleteUserPage({ session }) {
   const [errorMessage, setErrorMessage] = useState();
   const router = useRouter();
   const oldPasswordRef = useRef();
@@ -37,19 +36,14 @@ export default function DeleteUser({ session }) {
 
   async function submitHandler(event) {
     event.preventDefault();
-
     const enteredOldPassword = oldPasswordRef.current.value;
-
-    // optional: Add validation
 
     try {
       const result = await handleDeleteUser({
         oldPassword: enteredOldPassword,
       });
-
-      console.log(result);
-      router.replace("/login");
       signOut();
+      router.replace("/login");
     } catch (error) {
       setErrorMessage(error.message || "Something went wrong!");
       return;
@@ -61,7 +55,6 @@ export default function DeleteUser({ session }) {
       <Heading as='h1' size='lg' my={5}>
         Delete your account
       </Heading>
-
       <Text my={4}>
         In order to delete your account please insert your old password and
         click 'Delete user'.

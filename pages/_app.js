@@ -1,7 +1,7 @@
 import React from "react";
 import ChakraUI from "../styles/chakra";
 import { Provider } from "next-auth/client";
-import Container from "../components/Container";
+import Container from "../components/Container/Container";
 import { NotesContextProvider } from "../context/PersonalNotesContext";
 
 function MyApp({ Component, pageProps }) {
