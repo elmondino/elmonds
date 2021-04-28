@@ -11,32 +11,8 @@ import NotesContext from "../../context/PersonalNotesContext";
 import { useContext } from "react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-
-async function getNote() {
-  const response = await fetch(`/api/note/find-user-notes`);
-  const data = await response.json();
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
-  }
-  return data;
-}
-
-async function createNote(note) {
-  const response = await fetch("/api/note/create-note", {
-    method: "POST",
-    body: JSON.stringify({ note }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
-  }
-  return data;
-}
+import findUserNotes from "../../lib/findUserNotes";
+import createNote from "../../lib/createNote";
 
 export default function Note() {
   const [errorMessage, setErrorMessage] = useState();
@@ -59,7 +35,7 @@ export default function Note() {
     try {
       const result = await createNote(newNote);
       successToast();
-      const data = await getNote();
+      const data = await findUserNotes();
       notesContext.setNotes(data);
       setErrorMessage(false);
       setIsButtonDisabled(false);

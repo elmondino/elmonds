@@ -28,6 +28,7 @@ function ProfileForm({ changePasswordHandler }) {
         newPassword: enteredNewPassword,
       });
       successToast();
+      setErrorMessage(false);
       setIsButtonDisabled(false);
     } catch (error) {
       setErrorMessage(error.message);

@@ -18,6 +18,7 @@ function ChangePassword() {
     }
     return data;
   }
+
   return (
     <>
       <Heading as='h1' size='lg' my={5}>

@@ -6,32 +6,10 @@ import { useEffect, useState, useContext } from "react";
 import NotesContext from "../../context/PersonalNotesContext";
 import { useToast } from "@chakra-ui/react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
+import findUserNotes from "../../lib/findUserNotes";
+import handleDeleteNote from "../../lib/deleteNote";
 
-async function getNote(note) {
-  const response = await fetch(`/api/note/find-user-notes`);
-  const data = await response.json();
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
-  }
-  return data;
-}
-
-async function handleDeleteNote(noteId) {
-  const response = await fetch("/api/note/delete-note", {
-    method: "DELETE",
-    body: JSON.stringify({ noteId }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong!");
-  }
-  return data;
-}
-
-export default function PersonalNotes({ notes, setNotes }) {
+export default function PersonalNotes() {
   const { colorMode } = useColorMode();
   const [session, loading] = useSession();
   const [errorMessage, setErrorMessage] = useState(false);
@@ -47,6 +25,7 @@ export default function PersonalNotes({ notes, setNotes }) {
     duration: 3000,
     isClosable: true,
   });
+
   useEffect(async () => {
     const response = await fetch(`/api/note/find-user-notes`);
     const data = await response.json();
@@ -57,7 +36,7 @@ export default function PersonalNotes({ notes, setNotes }) {
     try {
       const result = await handleDeleteNote(noteId);
       successToast();
-      const data = await getNote();
+      const data = await findUserNotes();
       notesContext.setNotes(data);
       setErrorMessage(false);
     } catch (error) {
@@ -75,9 +54,9 @@ export default function PersonalNotes({ notes, setNotes }) {
         <Heading as='h1' size='lg' my={5}>
           View all your personal notes
         </Heading>
-        {notes &&
-          notes.length &&
-          notes.map((note) => (
+        {notesContext.notes &&
+          notesContext.notes.length &&
+          notesContext.notes.map((note) => (
             <Flex key={note._id}>
               <Flex
                 border={("2px solid #0071c3", "2px solid #0071c3")}
@@ -103,7 +82,9 @@ export default function PersonalNotes({ notes, setNotes }) {
               </Flex>
             </Flex>
           ))}
-        {notes && notes.message && <Text my={4}>{notes && notes.message}</Text>}
+        {notesContext.notes && notesContext.notes.message && (
+          <Text my={4}>{notesContext.notes && notesContext.notes.message}</Text>
+        )}
         {errorMessage && (
           <Alert status='error' my={4}>
             <AlertTitle mr={2}>{errorMessage}</AlertTitle>
