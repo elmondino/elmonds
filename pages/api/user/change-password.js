@@ -33,7 +33,7 @@ async function handler(req, res) {
   if (!passwordsAreEqual) {
     res.status(403).json({
       message:
-        "Invalid input for old password, please check your old password matches your current password.",
+        "Invalid old password, please check you've typed in your old password correctly.",
     });
     client.close();
     return;

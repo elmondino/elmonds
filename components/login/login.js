@@ -12,6 +12,7 @@ import { Alert, AlertTitle } from "@chakra-ui/react";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const successToast = useToast({
@@ -24,6 +25,7 @@ function Login() {
 
   async function submitHandler(event) {
     event.preventDefault();
+    setIsButtonDisabled(true);
     const enteredEmail = emailInputRef.current.value.toLowerCase();
     const enteredPassword = passwordInputRef.current.value;
     const result = await signIn("credentials", {
@@ -34,12 +36,12 @@ function Login() {
 
     if (!result.error) {
       successToast();
-      return;
+      setIsButtonDisabled(false);
     }
 
     if (result.error) {
       setErrorMessage(result.error || "Something went wrong!");
-      return;
+      setIsButtonDisabled(false);
     }
   }
 
@@ -72,7 +74,7 @@ function Login() {
             <AlertTitle mr={2}>{errorMessage}</AlertTitle>
           </Alert>
         )}
-        <Button colorScheme='blue' type='submit'>
+        <Button colorScheme='blue' type='submit' disabled={isButtonDisabled}>
           Login
         </Button>
       </form>

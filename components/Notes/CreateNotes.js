@@ -12,7 +12,7 @@ import { useContext } from "react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
-async function getNote(note) {
+async function getNote() {
   const response = await fetch(`/api/note/find-user-notes`);
   const data = await response.json();
   if (!response.ok) {
@@ -41,6 +41,7 @@ async function createNote(note) {
 export default function Note() {
   const [errorMessage, setErrorMessage] = useState();
   const notesContext = useContext(NotesContext);
+  const [isButtonDisabled, setIsButtonDisabled] = useState();
   const noteRef = useRef();
   const successToast = useToast({
     title: "Note created.",
@@ -52,6 +53,7 @@ export default function Note() {
 
   async function submitHandler(event) {
     event.preventDefault();
+    setIsButtonDisabled(true);
     const newNote = noteRef.current.value;
 
     try {
@@ -60,8 +62,10 @@ export default function Note() {
       const data = await getNote();
       notesContext.setNotes(data);
       setErrorMessage(false);
+      setIsButtonDisabled(false);
     } catch (error) {
       setErrorMessage(error.message);
+      setIsButtonDisabled(false);
     }
   }
 
@@ -88,7 +92,12 @@ export default function Note() {
             <AlertTitle mr={2}>{errorMessage}</AlertTitle>
           </Alert>
         )}
-        <Button my={4} colorScheme='blue' type='submit'>
+        <Button
+          my={4}
+          colorScheme='blue'
+          type='submit'
+          disabled={isButtonDisabled}
+        >
           Create Note
         </Button>
       </form>

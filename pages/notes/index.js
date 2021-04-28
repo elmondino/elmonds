@@ -16,7 +16,7 @@ export default function NotesPage() {
           you can view everyones notes below, and also create some of your own,
           if you have logged in.
         </Text>
-        {!session && (
+        {!session && !loading && (
           <Text my={4}>
             if you'd like to add a note{" "}
             <NextLink href='/sign-up' passHref>

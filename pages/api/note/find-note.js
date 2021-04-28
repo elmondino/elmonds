@@ -13,7 +13,7 @@ async function handler(req, res) {
 
   const notes = await db.collection("notes").find({}, options).toArray();
 
-  res.status(200).json(notes);
+  res.status(200).json({ notes });
   client.close();
   return;
 }

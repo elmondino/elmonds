@@ -12,6 +12,7 @@ import {
 import { Alert, AlertTitle } from "@chakra-ui/react";
 
 export default function DeleteUserPage({ session }) {
+  const [isDisabled, setIsDisabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
   const router = useRouter();
   const oldPasswordRef = useRef();
@@ -36,6 +37,7 @@ export default function DeleteUserPage({ session }) {
 
   async function submitHandler(event) {
     event.preventDefault();
+    setIsDisabled(true);
     const enteredOldPassword = oldPasswordRef.current.value;
 
     try {
@@ -44,9 +46,10 @@ export default function DeleteUserPage({ session }) {
       });
       signOut();
       router.replace("/login");
+      setIsDisabled(false);
     } catch (error) {
       setErrorMessage(error.message || "Something went wrong!");
-      return;
+      setIsDisabled(false);
     }
   }
 
@@ -73,7 +76,7 @@ export default function DeleteUserPage({ session }) {
             <AlertTitle mr={2}>{errorMessage}</AlertTitle>
           </Alert>
         )}
-        <Button type='submit' colorScheme='blue'>
+        <Button type='submit' colorScheme='blue' disabled={isDisabled}>
           Delete user
         </Button>
       </form>

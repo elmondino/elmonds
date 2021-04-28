@@ -9,7 +9,7 @@ async function handler(req, res) {
   const session = await getSession({ req: req });
 
   if (!session.user.email) {
-    res.status(401).json({ message: "Not authenticated!", status: "error" });
+    res.status(401).json({ message: "Not authenticated!" });
     return;
   }
 
@@ -21,7 +21,6 @@ async function handler(req, res) {
   if (!user) {
     res.status(200).json({
       message: "User does not have any notes, need to create some first.",
-      status: "success",
     });
     client.close();
     return;
@@ -33,9 +32,8 @@ async function handler(req, res) {
   const notes = await notesCollection
     .find({ email: userEmail }, options)
     .toArray();
-  const notesWithStatus = { status: "success", notes };
 
-  res.status(200).json(notesWithStatus);
+  res.status(200).json(notes);
   client.close();
   return;
 }

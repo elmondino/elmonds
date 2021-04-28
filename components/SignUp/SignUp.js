@@ -34,6 +34,7 @@ function SignUp() {
   const passwordInputRef = useRef();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const successToast = useToast({
     title: "Account created.",
     description: "We've created your account for you, please log in.",
@@ -44,6 +45,7 @@ function SignUp() {
 
   async function submitHandler(event) {
     event.preventDefault();
+    setIsButtonDisabled(true);
     const enteredEmail = emailInputRef.current.value.toLowerCase();
     const enteredPassword = passwordInputRef.current.value;
 
@@ -51,8 +53,10 @@ function SignUp() {
       const result = await createUser(enteredEmail, enteredPassword);
       router.replace("/login");
       successToast();
+      setIsButtonDisabled(false);
     } catch (error) {
       setErrorMessage(error.message);
+      setIsButtonDisabled(false);
     }
   }
 
@@ -99,7 +103,11 @@ function SignUp() {
           </Alert>
         )}
         <FormControl>
-          <Button colorScheme={"blue"} type='submit'>
+          <Button
+            colorScheme={"blue"}
+            type='submit'
+            disabled={isButtonDisabled}
+          >
             Create account
           </Button>
         </FormControl>
