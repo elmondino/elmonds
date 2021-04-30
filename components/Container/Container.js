@@ -21,7 +21,7 @@ const Container = ({ children }) => {
         bg={bgColor[colorMode]}
         color={color[colorMode]}
         px={[4, 4, 4]}
-        mt={[4, 8, 8]}
+        my={[4, 4, 10]}
         mx={"auto"}
         maxWidth='800px'
         width='100%'

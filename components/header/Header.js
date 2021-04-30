@@ -46,7 +46,6 @@ function Header() {
         px={[0, 0, 6, 6]}
         py={[0, 0, 2, 2]}
         mt={[0, 0, 8, 8]}
-        mb={[0, 0, 8, 8]}
         mx='auto'
       >
         <NavigationLinks setIsMobile={setIsMobile} />

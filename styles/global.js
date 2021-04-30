@@ -35,6 +35,9 @@ const GlobalStyle = ({ children }) => {
           * {
             box-sizing: border-box !important;
           }
+          .chakra-toast__inner > div[role="alert"] {
+            background: #76bdea;
+          }
         `}
       />
       {children}

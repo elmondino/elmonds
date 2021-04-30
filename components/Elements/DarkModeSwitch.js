@@ -13,19 +13,13 @@ const DarkModeSwitch = () => {
   };
 
   return (
-    <Box
-      minWidth={["100%", "100%", "auto", "auto"]}
-      textAlign={"center"}
-      px={[1, 2]}
-    >
-      <IconButton
-        aria-label='Toggle dark mode'
-        icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
-        onClick={toggleColorMode}
-        color={iconColor[colorMode]}
-        background={backgroundColor[colorMode]}
-      />
-    </Box>
+    <IconButton
+      aria-label='Toggle dark mode'
+      icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
+      onClick={toggleColorMode}
+      color={iconColor[colorMode]}
+      background={backgroundColor[colorMode]}
+    />
   );
 };
 

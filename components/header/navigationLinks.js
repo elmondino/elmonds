@@ -88,7 +88,13 @@ export default function NavigationLinks({ setIsMobile }) {
         minWidth={[0, 0, 0, 230]}
       >
         {hasLoggedIn()}
-        <DarkModeSwitch />
+        <Box
+          minWidth={["100%", "100%", "auto", "auto"]}
+          textAlign={"center"}
+          px={[1, 2]}
+        >
+          <DarkModeSwitch />
+        </Box>
       </Flex>
     </>
   );
