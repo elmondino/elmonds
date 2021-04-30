@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/client";
-import ChangePassword from "../../components/change-password/change-password";
+import ChangePassword from "../../components/change-password/change-password.js";
 
 function ChangePasswordPage() {
   return <ChangePassword />;

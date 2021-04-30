@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Heading, Text, Box, Link } from "@chakra-ui/react";
-import DarkModeSwitch from "../components/elements/dark-mode-switch";
+import DarkModeSwitch from "../components/elements/dark-mode-switch.js";
 import NextLink from "next/link";
 
 export default function Index() {

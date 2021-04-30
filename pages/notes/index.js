@@ -1,4 +1,4 @@
-import ViewAllNotes from "../../components/notes/view-all-notes";
+import ViewAllNotes from "../../components/notes/view-all-notes.js";
 import { useSession } from "next-auth/client";
 import NextLink from "next/link";
 import { Text, Heading, Box } from "@chakra-ui/react";

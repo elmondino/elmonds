@@ -1,5 +1,5 @@
-import PersonalNotes from "../../components/notes/personal-notes";
-import CreateNotes from "../../components/notes/create-notes";
+import PersonalNotes from "../../components/notes/personal-notes.js";
+import CreateNotes from "../../components/notes/create-notes.js";
 import { useSession } from "next-auth/client";
 import { Heading } from "@chakra-ui/layout";
 
