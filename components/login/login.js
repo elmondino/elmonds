@@ -36,7 +36,6 @@ function Login() {
 
     if (!result.error) {
       successToast();
-      setIsButtonDisabled(false);
     }
 
     if (result.error) {

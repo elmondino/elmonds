@@ -1,17 +1,28 @@
 import { createContext, useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 
-const NotesContext = createContext();
+const NotesContext = createContext({
+  notes: {},
+});
 
-export function NotesContextProvider(props) {
+export const NotesContextProvider = (props) => {
   const [session, loading] = useSession();
   const [notes, setNotes] = useState(null);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (session) {
-      const response = await fetch(`/api/note/find-user-notes`);
-      const data = await response.json();
-      setNotes(data);
+      const fetchUserData = async () => {
+        try {
+          const response = await fetch(`/api/note/find-user-notes`);
+          const data = await response.json();
+          console.log(data);
+          setNotes(data);
+        } catch (error) {
+          console.log("error, unable to find notes");
+          setNotes({ message: "error, unable to find notes" });
+        }
+      };
+      fetchUserData();
     }
   }, []);
 
@@ -25,6 +36,6 @@ export function NotesContextProvider(props) {
       {props.children}
     </NotesContext.Provider>
   );
-}
+};
 
 export default NotesContext;
