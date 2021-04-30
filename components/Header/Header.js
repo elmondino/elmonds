@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
-import NavigationLinks from "./NavigationLinks";
-import HamburgerMenu from "./HamburgerMenu";
+import NavigationLinks from "./navigation-links";
+import HamburgerMenu from "./hamburger-menu";
 
 function Header() {
   const { colorMode } = useColorMode();

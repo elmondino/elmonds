@@ -36,7 +36,7 @@ export default function Weather(props) {
   const successToast = useToast({
     title: "Weather has been found for your desired location!",
     status: "info",
-    duration: 5000,
+    duration: 500000,
     isClosable: true,
   });
 

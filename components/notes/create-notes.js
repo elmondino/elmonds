@@ -7,12 +7,12 @@ import {
   FormControl,
   Box,
 } from "@chakra-ui/react";
-import NotesContext from "../../context/PersonalNotesContext";
+import NotesContext from "../../context/personal-notes-context";
 import { useContext } from "react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-import findUserNotes from "../../lib/findUserNotes";
-import createNote from "../../lib/createNote";
+import findUserNotes from "../../lib/find-user-notes";
+import createNote from "../../lib/create-note";
 
 export default function Note() {
   const [errorMessage, setErrorMessage] = useState();

@@ -1,5 +1,5 @@
 import { Heading, Text } from "@chakra-ui/layout";
-import ChangePasswordForm from "./ChangePasswordForm";
+import ChangePasswordForm from "./change-password-form";
 
 function ChangePassword() {
   async function changePasswordHandler(passwordData) {

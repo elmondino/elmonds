@@ -1,8 +1,8 @@
 import { signOut, useSession } from "next-auth/client";
 import { Button, Flex, Box } from "@chakra-ui/react";
 import NextLink from "next/link";
-import DarkModeSwitch from "../Elements/DarkModeSwitch";
-import NavigationButton from "../Elements/NavigationButton";
+import DarkModeSwitch from "../elements/dark-mode-switch";
+import NavigationButton from "../elements/navigation-button";
 
 export default function NavigationLinks({ setIsMobile }) {
   const [session, loading] = useSession();

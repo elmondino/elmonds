@@ -10,19 +10,6 @@ export default NextAuth({
   },
   providers: [
     Providers.Credentials({
-      // name: "Email and Password",
-      // credentials: {
-      //   email: {
-      //     label: "Email",
-      //     type: "text",
-      //     placeholder: "Please enter your email",
-      //   },
-      //   password: {
-      //     label: "Password",
-      //     type: "password",
-      //     placeholder: "Please enter your password",
-      //   },
-      // },
       async authorize(credentials) {
         const client = await connectToDatabase();
         const usersCollection = client.db().collection("users");

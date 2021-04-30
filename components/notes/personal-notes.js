@@ -3,11 +3,11 @@ import { Button } from "@chakra-ui/button";
 import { Flex, Text, Box, Heading } from "@chakra-ui/react";
 import { useColorMode } from "@chakra-ui/react";
 import { useEffect, useState, useContext } from "react";
-import NotesContext from "../../context/PersonalNotesContext";
+import NotesContext from "../../context/personal-notes-context";
 import { useToast } from "@chakra-ui/react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
-import findUserNotes from "../../lib/findUserNotes";
-import handleDeleteNote from "../../lib/deleteNote";
+import findUserNotes from "../../lib/find-user-notes";
+import handleDeleteNote from "../../lib/delete-note";
 
 export default function PersonalNotes() {
   const { colorMode } = useColorMode();

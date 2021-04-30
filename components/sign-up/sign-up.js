@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-import createUser from "../../lib/createUser";
+import createUser from "../../lib/create-user";
 
 function SignUp() {
   const emailInputRef = useRef();
