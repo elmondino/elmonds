@@ -1,6 +1,6 @@
 import React from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
-import Header from "./header/header-file";
+import Header from "./header";
 
 const Container = ({ children }) => {
   const { colorMode } = useColorMode();
