@@ -1,4 +1,4 @@
-import login from "../../components/login/login";
+import Login from "../../components/login";
 import { useSession } from "next-auth/client";
 import { Heading, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
@@ -33,7 +33,7 @@ export default function LoginPage() {
         )}
         {!session && (
           <>
-            <login></login>
+            <Login></Login>
           </>
         )}
       </main>

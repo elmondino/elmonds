@@ -10,7 +10,7 @@ import {
 import { useToast } from "@chakra-ui/react";
 import { Alert, AlertTitle } from "@chakra-ui/react";
 
-function login() {
+function Login() {
   const [errorMessage, setErrorMessage] = useState();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const emailInputRef = useRef();
@@ -81,4 +81,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
