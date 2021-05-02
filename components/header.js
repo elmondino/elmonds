@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
 import Navigationlinks from "./header/navigation-links";
-import HamburgerMenu from "./header/hamburger-menu";
+import Hamburgermenu from "./header/hamburger-menu";
 
 function Header() {
   const { colorMode } = useColorMode();
@@ -18,7 +18,7 @@ function Header() {
   return (
     <Box as='header' maxWidth={"1000px"} alignSelf={"center"} width={"100%"}>
       {/* MOBILE/TABLET */}
-      <HamburgerMenu isMobile={isMobile} setIsMobile={setIsMobile} />
+      <Hamburgermenu isMobile={isMobile} setIsMobile={setIsMobile} />
       {isMobile ? (
         <Box
           display={["block", "block", "none", "none"]}
