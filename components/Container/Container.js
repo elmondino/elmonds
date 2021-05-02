@@ -2,7 +2,7 @@ import React from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
 import Header from "../header/header";
 
-const Container = ({ children }) => {
+const container = ({ children }) => {
   const { colorMode } = useColorMode();
   const bgColor = {
     light: "white",
@@ -32,4 +32,4 @@ const Container = ({ children }) => {
   );
 };
 
-export default Container;
+export default container;
