@@ -4,7 +4,7 @@ import NextLink from "next/link";
 import DarkModeSwitch from "../elements/dark-mode-switch";
 import NavigationButton from "../elements/navigation-button";
 
-export default function Navigationlinks({ setIsMobile }) {
+export default function NavigationLinks({ setIsMobile }) {
   const [session, loading] = useSession();
 
   const hasLoggedIn = () => {
