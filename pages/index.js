@@ -18,8 +18,8 @@ export default function Index() {
         </Heading>
         <Text my={3}>
           This App was built using Next.js, React.js, MongoDB, Node.js Rest
-          API's and Chakra UI for styling. It is hosted on Vercel and code the
-          repository is GitHub.
+          API's and Chakra UI for styling. It is depolyed and hosted on Vercel
+          and the code repository is GitHub.
         </Text>
         <Heading size='md' my={5}>
           Colour scheme
@@ -41,8 +41,9 @@ export default function Index() {
         </Text>
         <Text my={3}>
           Once you're logged in you will be able to access all features of this
-          App. E.G. access secret routes, create notes and delete notes. These
-          notes are public and every visitor will be able to view them.
+          App. For example access secret routes, create notes and delete notes.
+          Be aware these notes are public and every visitor will be able to view
+          them.
         </Text>
         <Text my={3}>
           You're able to look at the current weather forecast in some of your
