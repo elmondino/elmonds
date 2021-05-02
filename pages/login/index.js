@@ -1,4 +1,4 @@
-import Login from "./components/login/login";
+import Login from "./../components/login/login";
 import { useSession } from "next-auth/client";
 import { Heading, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
