@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useColorMode, Box } from "@chakra-ui/react";
-import NavigationLinks from "./header/navigation-links";
+import Navigationlinks from "./header/navigation-links";
 import HamburgerMenu from "./header/hamburger-menu";
 
 function Header() {
@@ -28,11 +28,11 @@ function Header() {
           minWidth={"100%"}
           as='nav'
         >
-          <NavigationLinks setIsMobile={setIsMobile} />
+          <Navigationlinks setIsMobile={setIsMobile} />
         </Box>
       ) : (
         <Box display={["none", "none", "none", "none"]}>
-          <NavigationLinks setIsMobile={setIsMobile} />
+          <Navigationlinks setIsMobile={setIsMobile} />
         </Box>
       )}
       {/* DESKTOP */}
@@ -48,7 +48,7 @@ function Header() {
         mt={[0, 0, 8, 8]}
         mx='auto'
       >
-        <NavigationLinks setIsMobile={setIsMobile} />
+        <Navigationlinks setIsMobile={setIsMobile} />
       </Box>
     </Box>
   );
