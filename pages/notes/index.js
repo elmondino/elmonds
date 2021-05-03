@@ -10,7 +10,7 @@ export default function NotesPage() {
     <>
       <Box as='section' pb={3}>
         <Heading as='h1' size='lg' my={5}>
-          Notes created by all accounts
+          Notes Created by Everyone
         </Heading>
         <Text my={4}>
           you can view everyones notes below, and also create some of your own,

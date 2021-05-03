@@ -4,7 +4,9 @@ import { getSession } from "next-auth/client";
 function ProtectedServerSidePage() {
   return (
     <Box>
-      <Heading my={5}>This is a protected server side route</Heading>
+      <Heading as='h1' size='lg' my={5}>
+        Protected Server Side Route
+      </Heading>
       <Text my={4}>
         Meaning behind protected server side route: The user will never see the
         authentication updates as authentication is checked in the backend

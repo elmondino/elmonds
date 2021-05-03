@@ -22,7 +22,7 @@ function ChangePassword() {
   return (
     <>
       <Heading as='h1' size='lg' my={5}>
-        Change your password
+        Change Your Password
       </Heading>
       <Text my={4}>
         In order to update your password enter your old password and new
