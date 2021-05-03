@@ -83,7 +83,18 @@ export default function Index() {
               textDecoration='underline'
               _hover={{ textDecoration: "none" }}
             >
-              www.github.com/elmondino
+              github.com/elmondino
+            </Link>
+          </NextLink>
+        </Text>
+        <Text my={3}>
+          GitHub repository for this single page application:{" "}
+          <NextLink href='https://github.com/elmondino/elmondsApp' passHref>
+            <Link
+              textDecoration='underline'
+              _hover={{ textDecoration: "none" }}
+            >
+              github.com/elmondino/elmondsApp
             </Link>
           </NextLink>
         </Text>
