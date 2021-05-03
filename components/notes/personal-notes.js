@@ -24,6 +24,7 @@ export default function PersonalNotes() {
     status: "info",
     duration: 3000,
     isClosable: true,
+    variant: "solid",
   });
 
   useEffect(async () => {

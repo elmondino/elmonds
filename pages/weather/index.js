@@ -38,6 +38,7 @@ export default function Weather(props) {
     status: "info",
     duration: 500000,
     isClosable: true,
+    variant: "solid",
   });
 
   return (

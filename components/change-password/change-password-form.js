@@ -14,6 +14,7 @@ function ProfileForm({ changePasswordHandler }) {
     status: "success",
     duration: 5000,
     isClosable: true,
+    variant: "solid",
   });
 
   async function submitHandler(event) {

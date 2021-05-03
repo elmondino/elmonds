@@ -21,6 +21,7 @@ function Login() {
     status: "success",
     duration: 9000,
     isClosable: true,
+    variant: "solid",
   });
 
   async function submitHandler(event) {

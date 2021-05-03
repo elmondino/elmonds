@@ -25,6 +25,7 @@ export default function Note() {
     status: "success",
     duration: 3000,
     isClosable: true,
+    variant: "solid",
   });
 
   async function submitHandler(event) {
