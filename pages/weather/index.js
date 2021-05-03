@@ -23,7 +23,7 @@ export default function Weather(props) {
 
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${inputVal}&appid=00d2df6aa95aa491a745340f0b802ad1`
+        `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${inputVal}&appid=44799b9499457adda656ebf1c8c7cabd`
       );
       setHasError(false);
       setWeatherData(response.data);
@@ -36,7 +36,7 @@ export default function Weather(props) {
   const successToast = useToast({
     title: "Weather has been found for your desired location!",
     status: "info",
-    duration: 500000,
+    duration: 5000,
     isClosable: true,
     variant: "solid",
   });
@@ -99,7 +99,7 @@ export async function getStaticProps(context) {
 
   try {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=London&appid=00d2df6aa95aa491a745340f0b802ad1`
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=London&appid=44799b9499457adda656ebf1c8c7cabd`
     );
     return returnProps(response.data, false);
   } catch (err) {
