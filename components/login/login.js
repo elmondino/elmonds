@@ -48,7 +48,7 @@ function Login() {
   return (
     <section>
       <Heading as='h1' my={5} size='lg'>
-        Sign in to access all features
+        Sign In To Access All Features
       </Heading>
       <form onSubmit={submitHandler}>
         <FormControl id='email' isRequired my={4}>

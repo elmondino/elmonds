@@ -56,7 +56,7 @@ export default function DeleteUserPage({ session }) {
   return (
     <>
       <Heading as='h1' size='lg' my={5}>
-        Delete your account
+        Delete Your Account
       </Heading>
       <Text my={4}>
         In order to delete your account please insert your old password and

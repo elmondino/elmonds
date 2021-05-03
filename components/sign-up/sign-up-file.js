@@ -48,7 +48,7 @@ function SignUp() {
   return (
     <Box>
       <Heading as='h1' my={5} size='lg'>
-        Create yourself a test account
+        Create Test Account
       </Heading>
       <Text my={4}>
         You'll need an account in order to access all features for this Next.js

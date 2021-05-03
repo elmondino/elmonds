@@ -11,8 +11,8 @@ export default function ProtectedPage() {
   if (session) {
     return (
       <Box>
-        <Heading as='h1' my={5}>
-          Welcome to protected Next.js route
+        <Heading as='h1' size='lg' my={5}>
+          Protected Next.js Route
         </Heading>
         <Text my={4}>
           You're logged in welcome to the protected route {session.user.email}.
@@ -24,8 +24,8 @@ export default function ProtectedPage() {
   if (!session) {
     return (
       <Box>
-        <Heading as='h1' my={5}>
-          Welcome to protected Next.js route
+        <Heading as='h1' size='lg' my={5}>
+          Protected Next.js Route
         </Heading>
         <Text my={4}>
           This a protected route, you can only view the content of this page if
