@@ -15,7 +15,7 @@ function Login() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const successToast = useToast({
+  const successToast = useToast({ 
     title: "Success!",
     description: "You have successfully logged in.",
     status: "success",
