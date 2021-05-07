@@ -3,7 +3,8 @@ import { useSession } from "next-auth/client";
 import NextLink from "next/link";
 import { Text, Heading, Box } from "@chakra-ui/react";
 
-export default function NotesPage() {
+export default function NotesPage({notesData}) {
+  console.log(notesData)
   const [session, loading] = useSession();
 
   return (
@@ -50,7 +51,21 @@ export default function NotesPage() {
           </Text>
         )}
       </Box>
-      <ViewAllNotes />
+      <ViewAllNotes notesData={notesData}/>
     </>
   );
+}
+
+export async function getStaticProps () {
+  // const response = await fetch('https://elmonds.com/api/note/find-note')
+  const response = await fetch('https://elmonds.com/api/note/find-note')
+  console.log('ji', response)
+  const data = await response.json();
+  console.log('k',data)
+
+  return {
+    props: {
+      notesData: data
+    }
+  }
 }
