@@ -89,12 +89,12 @@ export default function Index() {
         </Text>
         <Text my={3}>
           GitHub repository for this single page application:{" "}
-          <NextLink href='https://github.com/elmondino/elmondsApp' passHref>
+          <NextLink href='https://github.com/elmondino/elmonds' passHref>
             <Link
               textDecoration='underline'
               _hover={{ textDecoration: "none" }}
             >
-              github.com/elmondino/elmondsApp
+              github.com/elmondino/elmonds
             </Link>
           </NextLink>
         </Text>
