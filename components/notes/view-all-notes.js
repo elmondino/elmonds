@@ -3,7 +3,6 @@ import {Button, Text, Flex} from '@chakra-ui/react';
 import {useColorMode} from '@chakra-ui/react';
 
 export default function ViewNotes({notesData}) {
-	console.log(notesData);
 	const {colorMode} = useColorMode();
 	const [notes, setNotes] = useState(notesData);
 	const [showNotes, setShowNotes] = useState(true);

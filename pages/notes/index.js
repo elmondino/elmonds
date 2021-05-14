@@ -5,7 +5,6 @@ import { Text, Heading, Box } from "@chakra-ui/react";
 import {getNotes} from '../api/note/find-note';
 
 export default function NotesPage({notesData}) {
-  console.log(notesData)
   const [session, loading] = useSession();
 
   return (
