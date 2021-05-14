@@ -2,8 +2,9 @@ import ViewAllNotes from "../../components/notes/view-all-notes";
 import { useSession } from "next-auth/client";
 import NextLink from "next/link";
 import { Text, Heading, Box } from "@chakra-ui/react";
+import {getNotes} from '../api/note/find-note';
 
-export default function NotesPage() {
+export default function NotesPage({notesData}) {
   const [session, loading] = useSession();
 
   return (
@@ -50,7 +51,18 @@ export default function NotesPage() {
           </Text>
         )}
       </Box>
-      <ViewAllNotes />
+      <ViewAllNotes notesData={notesData}/>
     </>
   );
+}
+
+export async function getStaticProps () {
+  let data = await getNotes();
+  data = JSON.parse(JSON.stringify(data))
+
+  return {
+    props: {
+      notesData: data.notes
+    }
+  }
 }

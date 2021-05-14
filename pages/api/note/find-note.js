@@ -18,4 +18,17 @@ async function handler(req, res) {
   return;
 }
 
+export async function getNotes() {
+  const client = await connectToDatabase();
+  const db = client.db();
+  const options = {
+    projection: { _id: 1, note: 1 },
+  };
+
+  const notes = await db.collection("notes").find({}, options).toArray();
+
+  client.close();
+  return ({ notes });
+}
+
 export default handler;
