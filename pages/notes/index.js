@@ -2,6 +2,7 @@ import ViewAllNotes from "../../components/notes/view-all-notes";
 import { useSession } from "next-auth/client";
 import NextLink from "next/link";
 import { Text, Heading, Box } from "@chakra-ui/react";
+import {getNotes} from '../api/note/find-note';
 
 export default function NotesPage({notesData}) {
   console.log(notesData)
@@ -57,15 +58,12 @@ export default function NotesPage({notesData}) {
 }
 
 export async function getStaticProps () {
-  // const response = await fetch('https://elmonds.com/api/note/find-note')
-  const response = await fetch('https://elmonds.com/api/note/find-note')
-  console.log('ji', response)
-  const data = await response.json();
-  console.log('k',data)
+  let data = await getNotes();
+  data = JSON.parse(JSON.stringify(data))
 
   return {
     props: {
-      notesData: data
+      notesData: data.notes
     }
   }
 }

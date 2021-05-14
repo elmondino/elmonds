@@ -3,7 +3,7 @@ import {Button, Text, Flex} from '@chakra-ui/react';
 import {useColorMode} from '@chakra-ui/react';
 
 export default function ViewNotes({notesData}) {
-  console.log(notesData)
+	console.log(notesData);
 	const {colorMode} = useColorMode();
 	const [notes, setNotes] = useState(notesData);
 	const [showNotes, setShowNotes] = useState(true);
@@ -11,12 +11,6 @@ export default function ViewNotes({notesData}) {
 		light: 'black',
 		dark: 'white',
 	};
-
-	// useEffect(async () => {
-	// 	const response = await fetch(`/api/note/find-note`);
-	// 	const data = await response.json();
-	// 	setNotes(data.notes);
-	// }, []);
 
 	return (
 		<section>
