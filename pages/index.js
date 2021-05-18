@@ -10,7 +10,7 @@ export default function Index() {
         <title>Elmonds Kreslins Next.js Application</title>
       </Head>
       <Box>
-        <Heading size='lg' my={5}>
+        <Heading size='lg' my={5} as='h1'>
           Welcome to Elmonds Kreslins Application
         </Heading>
         <Heading size='md' my={5}>
