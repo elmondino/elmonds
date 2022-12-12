@@ -18,7 +18,7 @@ export default function Index() {
         </Heading>
         <Text my={3}>
           This App was built using Next.js, React.js, MongoDB, Node.js Rest
-          API's and Chakra UI for styling. It is deployed and hosted on Vercel
+          API's and Chakra UI for styling. It is depolyed and hosted on Vercel
           and the code repository is GitHub.
         </Text>
         <Heading size='md' my={5}>
@@ -41,7 +41,7 @@ export default function Index() {
         </Text>
         <Text my={3}>
           Once you're logged in you will be able to access all features of this
-          App. For example, access secret routes, create notes and delete notes.
+          App. For example access secret routes, create notes and delete notes.
           Be aware these notes are public and every visitor will be able to view
           them.
         </Text>
@@ -56,11 +56,11 @@ export default function Index() {
           About me
         </Heading>
         <Text my={3}>
-          I'm Front-End Developer with Computer Science & Cybernetics BSc
+          I'm Senior QA Automation Engineer with Computer Science & Cybernetics BSc
           degree.
         </Text>
         <Text my={3}>
-          Commercial experience as Front-End Developer since July 2015.
+          Commercial experience as SDET and software developer since July 2015.
         </Text>
         <Text my={3}>
           Linkedin profile:{" "}
@@ -72,7 +72,7 @@ export default function Index() {
               textDecoration='underline'
               _hover={{ textDecoration: "none" }}
             >
-              www.linkedIn.com/in/elmonds-kreslins
+              www.linkedin.com/in/elmonds-kreslins
             </Link>
           </NextLink>
         </Text>
@@ -83,18 +83,7 @@ export default function Index() {
               textDecoration='underline'
               _hover={{ textDecoration: "none" }}
             >
-              github.com/elmondino
-            </Link>
-          </NextLink>
-        </Text>
-        <Text my={3}>
-          GitHub repository for this single page application:{" "}
-          <NextLink href='https://github.com/elmondino/elmonds' passHref>
-            <Link
-              textDecoration='underline'
-              _hover={{ textDecoration: "none" }}
-            >
-              github.com/elmondino/elmonds
+              www.github.com/elmondino
             </Link>
           </NextLink>
         </Text>
